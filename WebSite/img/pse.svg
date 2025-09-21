@@ -1,0 +1,82 @@
+<!-- guarda esto como pse-icon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Icono 3D PSE">
+  <defs>
+    <!-- Gradiente principal -->
+    <linearGradient id="gMain" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06b6d4"></stop>
+      <stop offset="1" stop-color="#0284a8"></stop>
+    </linearGradient>
+
+    <!-- Gloss highlight -->
+    <linearGradient id="gGloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"></stop>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop>
+    </linearGradient>
+
+    <!-- Sombra exterior -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#000" flood-opacity="0.45"></feDropShadow>
+    </filter>
+
+    <!-- Emboss (relieve) para efecto 3D -->
+    <filter id="emboss" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"></feGaussianBlur>
+      <feSpecularLighting in="blur" surfaceScale="3" specularConstant="0.6" specularExponent="20" lighting-color="#ffffff" result="specOut">
+        <fePointLight x="-2000" y="-1000" z="2000"></fePointLight>
+      </feSpecularLighting>
+      <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specMask"></feComposite>
+      <feBlend in="SourceGraphic" in2="specMask" mode="screen"></feBlend>
+    </filter>
+
+    <!-- Contorno suave -->
+    <filter id="soft-outline" x="-50%" y="-50%" width="200%" height="200%">
+      <feMorphology operator="dilate" radius="0.8" in="SourceAlpha" result="dilated"></feMorphology>
+      <feGaussianBlur in="dilated" stdDeviation="2" result="blur2"></feGaussianBlur>
+      <feComposite in="blur2" in2="SourceAlpha" operator="out" result="outline"></feComposite>
+      <feFlood flood-color="#000" flood-opacity="0.12"></feFlood>
+      <feComposite in2="outline" operator="in"></feComposite>
+      <feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fondo: rectángulo redondeado con sombra -->
+  <g filter="url(#shadow)">
+    <rect x="28" y="28" rx="40" ry="40" width="456" height="456" fill="url(#gMain)"></rect>
+  </g>
+
+  <!-- Gloss highlight (superior) -->
+  <rect x="28" y="28" rx="40" ry="40" width="456" height="240" fill="url(#gGloss)" opacity="0.6"></rect>
+
+  <!-- Bloque interior (levemente más oscuro para contraste) -->
+  <g transform="translate(56,56)">
+    <rect width="400" height="400" rx="32" ry="32" fill="#052428" opacity="0.06"></rect>
+  </g>
+
+  <!-- Texto PSE con relieve y sombra suave -->
+  <g transform="translate(0,0)">
+    <!-- Sombra de texto -->
+    <text x="256" y="300" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-weight="800" font-size="160" fill="#001919" opacity="0.35" style="letter-spacing:6px;">
+      PSE
+    </text>
+
+    <!-- Texto principal con gradiente y emboss -->
+    <text x="256" y="290" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-weight="900" font-size="160" fill="#ffffff" style="letter-spacing:6px;" filter="url(#emboss)">
+      PSE
+    </text>
+
+    <!-- Contorno suave para claridad -->
+    <text x="256" y="290" text-anchor="middle" font-family="Poppins, Inter, Arial, sans-serif" font-weight="900" font-size="160" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="6" style="letter-spacing:6px;" stroke-linejoin="round"></text>
+  </g>
+
+  <!-- Pequeño badge 3D con icono de tarjeta (opcional) -->
+  <g transform="translate(360,360) rotate(0)">
+    <rect x="-10" y="-10" width="110" height="70" rx="12" ry="12" fill="#ffffff" opacity="0.08"></rect>
+    <rect x="-6" y="-6" width="102" height="62" rx="10" ry="10" fill="url(#gMain)"></rect>
+    <!-- simbolo tarjeta simple -->
+    <rect x="0" y="10" width="56" height="28" rx="4" fill="#ffffff" opacity="0.9"></rect>
+    <rect x="62" y="18" width="16" height="6" rx="2" fill="#ffffff" opacity="0.9"></rect>
+  </g>
+
+  <!-- Outline final (suaviza borde) -->
+  <rect x="28" y="28" rx="40" ry="40" width="456" height="456" fill="none" stroke="rgba(0,0,0,0.06)"></rect>
+</svg>
