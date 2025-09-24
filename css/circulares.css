@@ -1,0 +1,280 @@
+/* ------------------ Estilos Base ------------------ */
+:root {
+    --primary-green-dark: #1a7d00;
+    --secondary-green-dark: #0c4a00;
+    --neon-green: #00ff0d;
+    --neon-green-glow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+    --bg-light: #f0f2f5;
+    --text-dark: #333;
+    --secondary-purple: #6a1b9a;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+h1, h2 {
+    font-weight: 600;
+}
+
+h2 {
+    color: var(--secondary-purple);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+/* ------------------ Encabezado (Header) ------------------ */
+header {
+    background: linear-gradient(to right, var(--primary-green-dark), var(--secondary-green-dark));
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: var(--secondary-green-dark);
+}
+
+.main-nav {
+    display: flex;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--neon-green);
+    text-shadow: 0 0 8px var(--neon-green); /* Efecto neón en el texto */
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.search-bar {
+    position: relative;
+    color: #fff;
+}
+
+.search-bar input {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 10px;
+    padding-right: 35px;
+    border-radius: 20px;
+    color: white;
+}
+
+.search-bar input::placeholder {
+    color: #e0e0e0;
+}
+
+.search-bar .fas {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.hero-section {
+    background: linear-gradient(to right, var(--primary-green-dark), var(--secondary-green-dark));
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.hero-text p {
+    font-size: 1rem;
+    margin: 5px 0 0;
+}
+
+/* ------------------ Contenido Principal ------------------ */
+main {
+    padding: 40px 20px;
+}
+
+.circulares-section {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    max-width: 250px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--neon-green-glow), 0 8px 15px rgba(0, 0, 0, 0.15); /* Efecto de neón verde en el hover */
+}
+
+.icon-circle {
+    width: 150px;
+    height: 150px;
+    background-color: #e1f5fe;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--secondary-green-dark);
+}
+
+.icon-circle img {
+    max-width: 90%;
+    border-radius: 50%;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--secondary-green-dark);
+}
+
+/* ------------------ Pie de página (Footer) ------------------ */
+footer {
+    background: linear-gradient(to right, var(--primary-green-dark), var(--secondary-green-dark));
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+    text-align: center;
+}
+
+/* ------------------ Responsividad y Menú de Hamburguesa ------------------ */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--secondary-green-dark);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 999;
+        transition: transform 0.3s ease-in-out;
+        transform: translateY(-100%);
+    }
+
+    .main-nav.active {
+        display: flex;
+        transform: translateY(0);
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .main-nav li {
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .header-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .search-bar {
+        display: none;
+    }
+
+    .hero-section {
+        height: 200px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
