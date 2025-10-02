@@ -13,7 +13,7 @@
 body {
   margin: 0;
   font-family: Inter, system-ui, Arial;
-  background: linear-gradient(180deg,var(--bg),#021018);
+  background: linear-gradient(180deg,var(--bg),#087736);
   color: #e6f7fb;
   line-height: 1.35;
 }
@@ -137,8 +137,9 @@ section.section {
   cursor: pointer;
 }
 .card {
+
   background: #79967a; color: rgb(16, 82, 20);
-  border-radius: 12px; padding: 20px;
+  border-radius: 70px; padding: 20px;
   text-align: center; text-decoration: none;
   display: flex; flex-direction: column; align-items: center;
   transition: all 0.3s ease;

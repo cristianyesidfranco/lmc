@@ -1,89 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMC-CIRCULARES 2026</title>
-    <link rel="stylesheet" href="css/circulares.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Liceo Mixto Los Centauros - Demo</title>
+  <meta name="description" content="Sitio demo responsive con menú toggle, carruseles y secciones informativas">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 <body>
 
-    <header>
-        <div class="header-top">
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#">INICIO</a></li>
-                    <li><a href="#">ACADÉMICO</a></li>
-                    <li><a href="#">CONVIVENCIAL</a></li>
-                    <li><a href="#">GOBIERNO ESCOLAR</a></li>
-                    <li><a href="#">ADMISIONES</a></li>
-                    <li><a href="#">ENTORNO VIRTUAL</a></li>
-                    <li><a href="#">CONTÁCTENOS</a></li>
-                </ul>
-            </nav>
+
+  <!-- SIDEBAR MENU -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-header">
+      <div style="width:44px;height:44px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#7afcff);display:grid;place-items:center;color:#012">LMC</div>
+      <div>
+        <div style="font-weight:700">Liceo Mixto Centauros</div>
+        <div style="font-size:.85rem;color:var(--muted)"></div>
+      </div>
+    </div>
+
+    <ul class="menu-list">
+      <!-- Home con enlace 3D ya en header, repetimos como acceso rápido -->
+      <li class="menu-item"><a href="index.html" class="home-link"><span class="title"><span class="dot"></span><span>Inicio</span></span></a></li>
+
+      <!-- Categoria 1 -->
+      <li class="menu-item">
+        <a href="#" class="toggle-cat" data-target="#sub1"><span class="title"><span class="dot"></span><span>Liceo Mixto Los Centauros</span></span><span>▼</span></a>
+        <ul class="sublist" id="sub1">
+          <li><a href="#/liceo/comunidad" class="nav-link" data-page="liceo_comunidad">Comunidad</a></li>
+          <li><a href="#/liceo/resena" class="nav-link" data-page="liceo_resena">Reseña histórica</a></li>
+          <li><a href="#/liceo/nuestro" class="nav-link" data-page="liceo_nuestro">Nuestro Colegio</a></li>
+          <li><a href="#/liceo/historia" class="nav-link" data-page="liceo_historia">Historia</a></li>
+          <li><a href="#/liceo/simbolos" class="nav-link" data-page="liceo_simbolos">Símbolos</a></li>
+          <li><a href="#/liceo/fundadores" class="nav-link" data-page="liceo_fundadores">Fundadores</a></li>
+        </ul>
+      </li>
+
+      <!-- Categoria 2 -->
+      <li class="menu-item">
+        <a href="#" class="toggle-cat" data-target="#sub2"><span class="title"><span class="dot"></span><span>Académico</span></span><span>▼</span></a>
+        <ul class="sublist" id="sub2">
+          <li><a href="#/academico/directivo" class="nav-link" data-page="aca_directivo">Equipo directivo</a></li>
+          <li><a href="#/academico/propuesta" class="nav-link" data-page="aca_propuesta">Propuesta pedagógica</a></li>
+          <li><a href="#/academico/plan" class="nav-link" data-page="aca_plan">Plan de estudios</a></li>
+          <li><a href="#/academico/areas" class="nav-link" data-page="aca_areas">Áreas</a></li>
+          <li><a href="#/academico/enfasis" class="nav-link" data-page="aca_enfasis">Énfasis</a></li>
+          <li><a href="#/academico/optativas" class="nav-link" data-page="aca_optativas">Optativas lúdicas</a></li>
+        </ul>
+      </li>
+
+      <!-- Categoria 3 -->
+      <li class="menu-item">
+        <a href="#" class="toggle-cat" data-target="#sub3"><span class="title"><span class="dot"></span><span>socioemocional</span></span><span>▼</span></a>
+        <ul class="sublist" id="sub3">
+          <li><a href="#/pastoral/catequesis" class="nav-link" data-page="pas_catequesis">Catequesis</a></li>
+          <li><a href="#/pastoral/servicio" class="nav-link" data-page="pas_servicio">Servicio social</a></li>
+          <li><a href="#/pastoral/tribu" class="nav-link" data-page="pas_tribu">Tribu Centauriana</a></li>
+          <li><a href="#/pastoral/semilleros" class="nav-link" data-page="pas_semilleros">Semilleros de investigación e innovación</a></li>
+        </ul>
+      </li>
+
+      <!-- Categoria 4 -->
+      <li class="menu-item">
+        <a href="#" class="toggle-cat" data-target="#sub4"><span class="title"><span class="dot"></span><span>Convivencial</span></span><span>▼</span></a>
+        <ul class="sublist" id="sub4">
+          <li><a href="#/convivencial/uniformes" class="nav-link" data-page="con_uniformes">Uniformes</a></li>
+          <li><a href="#/convivencial/manual" class="nav-link" data-page="con_manual">Manual de convivencia</a></li>
+        </ul>
+      </li>
+
+      <!-- Categoria 5 -->
+      <li class="menu-item">
+        <a href="#" class="toggle-cat" data-target="#sub5"><span class="title"><span class="dot"></span><span>Gobierno escolar</span></span><span>▼</span></a>
+        <ul class="sublist" id="sub5">
+          <li><a href="#/gobierno/padres" class="nav-link" data-page="gov_padres">Consejo de padres</a></li>
+          <li><a href="#/gobierno/estudiantil" class="nav-link" data-page="gov_estudiantil">Consejo estudiantil</a></li>
+        </ul>
+      </li>
+
+      <!-- Resto Categoria 6-8 simple -->
+      <li class="menu-item"><a href="#/admisiones" class="nav-link" data-page="adm_admisiones"><span class="title"><span class="dot"></span><span>Admisiones</span></span></a></li>
+      <li class="menu-item"><a href="#/entorno" class="nav-link" data-page="entorno_virtual"><span class="title"><span class="dot"></span><span>Entorno virtual</span></span></a></li>
+      <li class="menu-item"><a href="#contacto" class="nav-link" data-page="contactenos"><span class="title"><span class="dot"></span><span>Contáctenos</span></span></a></li>
+    </ul>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="container" id="mainContent">
+   
+      <!-- HEADER -->
+    <header class="container">
+      <div class="brand">
+        <div class="home-3d" id="homeIcon" title="Ir a inicio">
+          <div class="cube">
+            <div class="face top"></div>
+            <div class="face front"><img src="img/logo_icon_transparent.ico" alt=""></div>
+            <div class="face right">LMC</div>
+          </div>
+          <div class="home-cloud" id="homeCloud">Bienvenidos a nuestro colegio, un espacio de fe, educación de calidad y fortalecimiento socioemocional.</div>
         </div>
-        <div class="header-bottom">
-            <div class="logo">LMC</div>
-            <div class="search-bar">
-                <input type="text" placeholder="Escribe para buscar">
-                <i class="fas fa-search"></i>
-            </div>
-            <div class="hamburger-menu">&#9776;</div>
+        <div class="title" >
+          <strong style="font-size:1.05rem" id="openSidebar">Liceo Mixto Centauros</strong>
+          <div style="font-size:.85rem;color:var(--muted)">Educación con tradición</div>
         </div>
-        <div class="hero-section">
-            <div class="hero-text">
-                <h1>Colegio <br> Liceo Mixto Centauros</h1>
-                <a href="index.html"><p>&lt; LMC</p></a>
-            </div>
-        </div>
+      </div>
+
+      <div class="nav">
+        <nav>
+          <ul style="display:flex;gap:.8rem;align-items:center;list-style:none;margin:0;padding:0">
+            <!-- <li><a href="#" class="btn-3d" id="openSidebar">Liceo Mixto Centauros</a></li> -->
+            <li><a href="#contacto">Contáctenos</a></li>
+            <li><a href="#contacto">Pagos</a></li>
+            <li><a href="#contacto">Inscripciones 2026</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+      </div>
     </header>
+    <!-- Section 2..4: Grid 4 con animaciones de rebote -->
+    <section class="section">
+       <div class="grid"> 
+          <a href="circulares.html" class="card">
+            <img src="img/rectoria.png" alt="Circulares">
+            <h3>Rectoría</h3>
+          </a>
 
-    <main>
-        <section class="circulares-section">
-            <h2>COLEGIO LIIcEO MIXTO CENTAUROS<br> CIRCULARES 2026</h2>
-            <div class="card-container">
-                <div class="card">
-                    <div class="icon-circle">
-                        <img src="https://via.placeholder.com/150" alt="Rectoría">
-                    </div>
-                    <div class="card-title">Rectoría</div>
-                </div>
-                <div class="card">
-                    <div class="icon-circle">
-                        <img src="https://via.placeholder.com/150" alt="Secretaría">
-                    </div>
-                    <div class="card-title">Secretaría</div>
-                </div>
-                <div class="card">
-                    <div class="icon-circle">
-                        <img src="https://via.placeholder.com/150" alt="Académico">
-                    </div>
-                    <div class="card-title">Académico</div>
-                </div>
-                <div class="card">
-                    <div class="icon-circle">
-                        <img src="https://via.placeholder.com/150" alt="Actividades">
-                    </div>
-                    <div class="card-title">Actividades <br> Extracurriculares</div>
-                </div>
-            </div>
-        </section>
-    </main>
+          <a href="calendario.html" class="card">
+            <img src="img/secretaria.png" alt="Calendario escolar">
+            <h3>Secretaria</h3>
+          </a>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                ALL RIGHTS RESERVED (C) 2026
-            </div>
-            <div class="footer-right">
-                COLEGIO LICEO MIXTO CETAUROS
-            </div>
+          <a href="padres.html" class="card">
+            <img src="img/atencionPadres.png" alt="Atención a padres">
+            <h3>Académico</h3>
+          </a>
+
+          <a href="costos.html" class="card">
+            <img src="img/costos.png" alt="Costos 2025">
+            <h3>Actividades Extracurriculares</h3>
+          </a>
         </div>
+    </section>
+
+   
+    
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div>Contacto: colegio@lmc.edu.co | Tel: +57 3013383883</div>
+        <div class="socials" style="margin-top:.8rem">
+          <a href="#" class="social-link" data-href="https://facebook.com"> <img src="img/generated-image-0bdd18ee-dbb2-4081-8486-be2ffd49048d.png" alt=""> </a>
+          <a href="#" class="social-link" data-href="https://youtube.com"> <img src="img/generated-image-3695af53-0b14-4759-b1c2-c4b885c06436.png" alt=""> </a>
+          <a href="#" class="social-link" data-href="https://instagram.com"><img src="img/generated-image-b692c3a3-0a8e-4bba-9ec3-58cc10f64731.png" alt=""> </a>
+          <a href="#" class="social-link" data-href="https://tiktok.com"> <img src="img/generated-image-c4daba7e-fa29-491c-9622-ee0057962f50.png" alt=""> </a>
+        </div>
+      </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/circulares.js"></script>
+  </main>
+
+  <!-- Boton subir -->
+  <div class="to-top" id="toTop" title="Subir">
+    ↑
+  </div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
