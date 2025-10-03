@@ -187,38 +187,83 @@ section.section {
 
 
 
-/* Carrusel manual (seccion 13) */
-.manual-carousel {
-  position: relative;
-  height: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  /* Ya no es necesario el `!important` aquí, a menos que un estilo externo lo sobreescriba */
-  width: 100%;
-}
+/*
+  Carrusel manual (seccion 13) - CÓDIGO CORREGIDO Y OPTIMIZADO
+  Mejoras en responsividad, consistencia y manejo de las diapositivas.
+*/
 
-.manual-carousel .slides {
-  display: flex;
-  transition: transform .45s;
-  width: 100%;
+.manual-carousel {
+    position: relative;
+    width: 100%;
+    /* Altura automática para que se ajuste a la imagen por defecto */
+    height: auto; 
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .manual-carousel img {
-  width: 100%; /* Esta es la clave. La imagen se ajustará al 100% del ancho del carrusel. */
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: auto; 
+    object-fit: contain; /* O 'cover', dependiendo de si quieres que se recorte o no */
+    display: block;
 }
+.manual-carousel .slides {
+    /* Clave: 'flex-wrap: nowrap' es crucial para que las imágenes queden en línea */
+    flex-wrap: nowrap;
+    display: flex;
+    /* Usa la propiedad 'transform' para el desplazamiento. Mantenemos 'transition' aquí. */
+    transition: transform 0.45s ease-in-out; /* Añadido 'ease-in-out' para un movimiento más suave */
+    /* El ancho debe ser manejado por JavaScript, pero 'width: 100%' es correcto para la base */
+    width: 100%;
+}
+
+.manual-carousel .slide-item {
+    /* Hace que cada diapositiva ocupe exactamente el ancho del contenedor */
+    flex-shrink: 0; /* Evita que las diapositivas se encojan */
+    width: 100%;
+    /* Recomendación: Encierra la <img> en un <div> con esta clase para mejor control */
+}
+
+
+
+/* --- Estilos de Navegación (Flechas) --- */
+
 .arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  background: var(--glass); border-radius: 50%;
-  width: 52px; height: 52px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 30px rgba(0,0,0,.6); transition: transform .25s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Usar una variable para el color de fondo es genial */
+    background: var(--glass, rgba(255, 255, 255, 0.4)); /* Fallback para --glass */
+    border-radius: 50%;
+    width: 48px; /* Ligeramente más pequeño es a menudo mejor */
+    height: 48px;
+    /* Centrado interno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10; /* Asegura que las flechas estén sobre las imágenes */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra más sutil */
+    transition: transform 0.25s, box-shadow 0.25s; /* Añadir sombra a la transición */
+    border: none; /* Mejor usar un <button> para accesibilidad y quitar el borde por defecto */
 }
-.arrow:hover { transform: translateY(-50%) scale(1.06) rotateY(20deg) }
-.arrow.left { left: 12px }
-.arrow.right { right: 12px }
+
+/* Estilo de hover y foco para accesibilidad */
+.arrow:hover,
+.arrow:focus {
+    /* Simplificación: solo mover en X y escalar ligeramente */
+    transform: translateY(-50%) scale(1.08);
+    outline: none; /* Eliminar el contorno por defecto para el foco, pero reintroducir un estilo visual */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.arrow.left {
+    left: 12px;
+}
+
+.arrow.right {
+    right: 12px;
+}
 
 /* Horarios visuales sección */
 .schedules { display: flex; gap: 1rem; flex-wrap: wrap }
@@ -293,4 +338,20 @@ footer .socials img:hover {
   #postersArea .poster.full { grid-column: span 1 }
   .nav { display: none }
   
+}
+/* Media Query para PC y Pantallas Grandes (p. ej., a partir de 1024px) */
+@media screen and (min-width: 1024px) {
+    .manual-carousel {
+        /* Limita la altura para que parezca un banner, no una tira vertical */
+        max-height: 500px; /* Ajusta este valor (400px, 500px) a lo que mejor se vea */
+        
+        /* Asegura que el contenido (la imagen) no se salga */
+        overflow: hidden;
+    }
+    
+    .manual-carousel img {
+        /* Fuerza a que el objeto (la imagen) cubra el contenedor */
+        /* Esto recortará los lados si la imagen es muy alta, pero mantendrá la proporción de banner */
+        object-fit: cover; 
+    }
 }
