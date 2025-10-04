@@ -1,259 +1,444 @@
 /* Reset y variables */
 :root {
-  --bg: #07101a;
-  --card: #0b1a24;
-  --accent: #00ff0d;
-  --neon: rgba(0,240,255,0.12);
-  --glass: rgba(255,255,255,0.03);
-  --glass-2: rgba(255,255,255,0.02);
-  --muted: #9fb3bd;
-  --max-w: 1200px;
+    --bg: #07101a;
+    --card: #0b1a24;
+    --accent: #00ff0d;
+    --neon: rgba(0, 240, 255, 0.12);
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-2: rgba(255, 255, 255, 0.02);
+    --muted: #9fb3bd;
+    --max-w: 1200px;
 }
-* { box-sizing: border-box }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: Inter, system-ui, Arial;
-  background: linear-gradient(180deg,var(--bg),#087736);
-  color: #e6f7fb;
-  line-height: 1.35;
+    margin: 0;
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--bg), #087736);
+    color: #e6f7fb;
+    line-height: 1.35;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-a { color: inherit; text-decoration: none }
 
-/* Contenedor global */
-.container { max-width: var(--max-w); margin: 0 auto; padding: 1rem }
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-/* Header y nav */
+/* Global Container */
+.container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* ==================== Header y Navegación ==================== */
 header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: .6rem 1rem;
-  background: linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
-  backdrop-filter: blur(6px);
-  position: sticky; top: 0; z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
-.brand { display: flex; align-items: center; gap: .8rem }
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
 
 /* Icono 3D Home */
-.home-3d { width: 54px; height: 54px; perspective: 800px; cursor: pointer; position: relative }
-.home-3d .cube { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.9,.3,1) }
-.home-3d:hover .cube { transform: rotateX(-14deg) rotateY(14deg) translateY(-4px) }
+.home-3d {
+    width: 54px;
+    height: 54px;
+    perspective: 800px;
+    cursor: pointer;
+    position: relative;
+}
+
+.home-3d .cube {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.home-3d:hover .cube {
+    transform: rotateX(-14deg) rotateY(14deg) translateY(-4px);
+}
+
 .cube .face {
-  position: absolute; inset: 0; border-radius: 8px;
-  background: linear-gradient(180deg,#06b6d4,#0284a8);
-  box-shadow: 0 8px 24px rgba(2,8,23,.6);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700;
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #06b6d4, #0284a8);
+    box-shadow: 0 8px 24px rgba(2, 8, 23, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
 }
-.cube .face.top { transform: rotateX(90deg) translateZ(27px) }
-.cube .face.front { transform: translateZ(27px) }
-.cube .face.right { transform: rotateY(90deg) translateZ(27px) }
+
+.cube .face.top {
+    transform: rotateX(90deg) translateZ(27px);
+}
+
+.cube .face.front {
+    transform: translateZ(27px);
+}
+
+.cube .face.right {
+    transform: rotateY(90deg) translateZ(27px);
+}
+
 .home-label {
-  position: absolute; left: 64px; top: 50%; transform: translateY(-50%);
-  background: var(--glass); padding: .35rem .6rem; border-radius: 999px;
-  font-size: .95rem; color: var(--muted);
-  box-shadow: 0 6px 20px rgba(0,0,0,.6);
+    position: absolute;
+    left: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--glass);
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
+
 .home-cloud {
-  position: absolute; left: -8px; top: 66px;
-  background: rgba(0,0,0,0.6); padding: .6rem .9rem;
-  border-radius: 18px; display: none;
-  color: var(--accent); font-weight: 600;
-  box-shadow: 0 8px 30px rgba(0,0,0,.6);
+    position: absolute;
+    left: -8px;
+    top: 66px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.6rem 0.9rem;
+    border-radius: 18px;
+    display: none;
+    color: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
 /* Toggle menu (mobile) */
-.menu-toggle { display: flex; align-items: center; gap: .5rem; cursor: pointer }
-.hamburger { width: 42px; height: 36px; display: flex; flex-direction: column; justify-content: center; gap: 5px }
-.hamburger span {
-  display: block; height: 3px;
-  background: linear-gradient(90deg,var(--accent),#7afcff);
-  border-radius: 3px; transition: transform .3s,opacity .3s;
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
 }
-.nav { display: flex; gap: 1rem }
 
-/* Sidebar / megamenu */
-.sidebar {
-  position: fixed; left: 0; top: 0; bottom: 0;
-  width: 320px; max-width: 85%;
-  background: linear-gradient(180deg,rgba(10,20,28,0.98),rgba(8,14,18,0.98));
-  padding: 1.2rem;
-  transform: translateX(-110%);
-  transition: transform .42s cubic-bezier(.2,.9,.3,1);
-  z-index: 1200; overflow: auto;
+.hamburger {
+    width: 42px;
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
 }
-.sidebar.open { transform: translateX(0) }
-.side-header { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem }
-.menu-list { list-style: none; padding: 0; margin: 0 }
-.menu-item { padding: .5rem; border-radius: 8px; margin-bottom: .2rem }
-.menu-item > a { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .6rem; border-radius: 8px }
-.menu-item a .title { display: flex; gap: .6rem; align-items: center; }
-.menu-item a .title .dot { width: 10px; height: 10px; background: linear-gradient(90deg,var(--accent),#7afcff); border-radius: 50% }
-.sublist { list-style: none; padding-left: 1rem; margin: 6px 0 10px 0; max-height: 0; overflow: hidden; transition: max-height .32s ease }
-.sublist.open { max-height: 600px }
-.sublist li a { display: block; padding: .45rem .6rem; border-radius: 6px; font-size: .95rem; color: var(--muted); cursor: pointer }
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #7afcff);
+    border-radius: 3px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Sidebar / Megamenu */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 85%;
+    background: linear-gradient(180deg, rgba(10, 20, 28, 0.98), rgba(8, 14, 18, 0.98));
+    padding: 1.2rem;
+    transform: translateX(-110%);
+    transition: transform 0.42s cubic-bezier(0.2, 0.9, 0.3, 1);
+    z-index: 1200;
+    overflow-y: auto; /* Usar overflow-y para el scroll vertical */
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.side-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.2rem;
+}
+
+.menu-item>a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+}
+
+.menu-item a .title {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.menu-item a .title .dot {
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(90deg, var(--accent), #7afcff);
+    border-radius: 50%;
+}
+
+.sublist {
+    list-style: none;
+    padding-inline-start: 1rem;
+    margin: 6px 0 10px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s ease;
+}
+
+.sublist.open {
+    max-height: 600px; /* Suficientemente grande para contener la lista */
+}
+
+.sublist li a {
+    display: block;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    cursor: pointer;
+}
 
 /* Neon hover efectos */
-.menu-item a:hover, .sublist li a:hover { box-shadow: 0 6px 18px rgba(0,240,255,0.08); transform: translateY(-2px) }
-.sublist li a:hover { color: var(--accent); text-shadow: 0 0 8px rgba(0,240,255,.7) }
+.menu-item a:hover,
+.sublist li a:hover {
+    box-shadow: 0 6px 18px rgba(0, 240, 255, 0.08);
+    transform: translateY(-2px);
+}
 
-/* Main content y secciones */
-main { padding: 1rem }
+.sublist li a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+}
+
+/* ==================== Main Content y Secciones ==================== */
+main {
+    padding: 1rem;
+}
+
 section.section {
-  background: linear-gradient(180deg,var(--card),transparent);
-  border-radius: 14px; padding: 1rem; margin: 1rem 0;
-  box-shadow: 0 8px 40px rgba(0,0,0,.5);
-  width: 100%;
+    background: linear-gradient(180deg, var(--card), transparent);
+    border-radius: 14px;
+    padding: 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    width: 100%;
 }
 
 /* Carrusel automático - sección 1 */
 .carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 1200px; /* opcional, para que no sea demasiado ancho */
-  aspect-ratio: 16/9; /* mantiene proporción de pantalla */
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    width: 100%;
+    max-width: var(--max-w);
+    aspect-ratio: 16/9;
 }
 
 .carousel .track {
-  display: flex;
-  transition: transform .8s cubic-bezier(.2,.9,.3,1);
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
 .carousel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
-.dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 10px; display: flex; gap: .5rem }
-.dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer }
-.dot.active { background: var(--accent); box-shadow: 0 0 16px rgba(0,240,255,.7) }
+
+.dots {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.7);
+}
 
 /* Grid responsivo para las 4 secciones destacadas */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 1rem;
-  cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    cursor: pointer;
 }
-.card {
 
-  background: #79967a; color: rgb(16, 82, 20);
-  border-radius: 70px; padding: 20px;
-  text-align: center; text-decoration: none;
-  display: flex; flex-direction: column; align-items: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(131, 85, 85, 0.2);
+.card {
+    background: #79967a;
+    color: rgb(16, 82, 20);
+    border-radius: 70px;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(131, 85, 85, 0.2);
 }
-.card img { width: 80px; height: 80px; margin-bottom: 15px }
-.card h3 { margin: 0; font-size: 1.3rem; font-weight: bold; letter-spacing: 1px }
-.card:hover { cursor: pointer; background: #055513;color: #e6f7fb; }
+
+.card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Responsivo */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.card:hover {
+    cursor: pointer;
+    background: #055513;
+    color: #e6f7fb;
+}
 
 /* Posters en grilla (4 PC - 2 tablet - 1 móvil) */
 #postersArea {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
-  gap: 20px;
-  width: 100%;
-  margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin: 20px auto;
 }
 
-/* Cada poster en su cajita */
 #postersArea .poster {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Que cada imagen se adapte al contenedor */
 #postersArea .poster img {
-  width: 100%;
-  height: auto; /* mantiene proporción */
-  object-fit: contain; /* no corta nada, ajusta la imagen */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 #postersArea .poster img:hover {
-   opacity: 0.7; /* El 70% de opacidad. 1 es completamente opaco, 0 es invisible. */
-   transform: scale(1.05); /* Se agranda un 5% */
+    opacity: 0.7;
+    transform: scale(1.05);
 }
 
-/* Poster especial que ocupa toda la fila */
 #postersArea .poster.full {
-  grid-column: 1 / span 4; /* ocupa las 4 columnas */
+    grid-column: 1 / span 4;
 }
 
-
-
-/*
-  Carrusel manual (seccion 13) - CÓDIGO CORREGIDO Y OPTIMIZADO
-  Mejoras en responsividad, consistencia y manejo de las diapositivas.
-*/
-
+/* Carrusel manual (seccion 13) */
 .manual-carousel {
     position: relative;
     width: 100%;
-    /* Altura automática para que se ajuste a la imagen por defecto */
-    height: auto; 
+    height: auto;
     overflow: hidden;
     margin-bottom: 20px;
 }
 
 .manual-carousel img {
     width: 100%;
-    height: auto; 
-    object-fit: contain; /* O 'cover', dependiendo de si quieres que se recorte o no */
+    height: auto;
+    object-fit: contain;
     display: block;
 }
+
 .manual-carousel .slides {
-    /* Clave: 'flex-wrap: nowrap' es crucial para que las imágenes queden en línea */
     flex-wrap: nowrap;
     display: flex;
-    /* Usa la propiedad 'transform' para el desplazamiento. Mantenemos 'transition' aquí. */
-    transition: transform 0.45s ease-in-out; /* Añadido 'ease-in-out' para un movimiento más suave */
-    /* El ancho debe ser manejado por JavaScript, pero 'width: 100%' es correcto para la base */
+    transition: transform 0.45s ease-in-out;
     width: 100%;
 }
 
 .manual-carousel .slide-item {
-    /* Hace que cada diapositiva ocupe exactamente el ancho del contenedor */
-    flex-shrink: 0; /* Evita que las diapositivas se encojan */
+    flex-shrink: 0;
     width: 100%;
-    /* Recomendación: Encierra la <img> en un <div> con esta clase para mejor control */
 }
 
-
-
-/* --- Estilos de Navegación (Flechas) --- */
-
+/* Estilos de Navegación (Flechas) */
 .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    /* Usar una variable para el color de fondo es genial */
-    background: var(--glass, rgba(255, 255, 255, 0.4)); /* Fallback para --glass */
+    background: var(--glass, rgba(255, 255, 255, 0.4));
     border-radius: 50%;
-    width: 48px; /* Ligeramente más pequeño es a menudo mejor */
+    width: 48px;
     height: 48px;
-    /* Centrado interno */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10; /* Asegura que las flechas estén sobre las imágenes */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra más sutil */
-    transition: transform 0.25s, box-shadow 0.25s; /* Añadir sombra a la transición */
-    border: none; /* Mejor usar un <button> para accesibilidad y quitar el borde por defecto */
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: none;
+    color: white; /* Asegúrate de que el icono de la flecha sea visible */
+    font-size: 1.5rem; /* Ajusta el tamaño de la flecha */
 }
 
-/* Estilo de hover y foco para accesibilidad */
 .arrow:hover,
 .arrow:focus {
-    /* Simplificación: solo mover en X y escalar ligeramente */
     transform: translateY(-50%) scale(1.08);
-    outline: none; /* Eliminar el contorno por defecto para el foco, pero reintroducir un estilo visual */
+    outline: none;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
@@ -266,164 +451,239 @@ section.section {
 }
 
 /* Horarios visuales sección */
-.schedules { display: flex; gap: 1rem; flex-wrap: wrap }
-.schedule-card {
-  flex: 1 1 260px; padding: 1rem; border-radius: 10px;
-  background: linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.12));
-  transition: opacity .25s; cursor: pointer;
+.schedules {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
-.schedule-card:hover { opacity: .85 }
+
+.schedule-card {
+    flex: 1 1 260px;
+    padding: 1rem;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.12));
+    transition: opacity 0.25s;
+    cursor: pointer;
+}
+
+.schedule-card:hover {
+    opacity: 0.85;
+}
 
 /* Boton pago */
-.pay-area { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap }
+.pay-area {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .btn-3d {
-  padding: .7rem 1rem; border-radius: 10px;
-  background: linear-gradient(180deg,#06b6d4,#0284a8);
-  box-shadow: 0 10px 30px rgba(2,8,23,.6); cursor: pointer;
-  transform-style: preserve-3d;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #06b6d4, #0284a8);
+    box-shadow: 0 10px 30px rgba(2, 8, 23, 0.6);
+    cursor: pointer;
+    transform-style: preserve-3d;
 }
 
 /* Boton flotante subir */
 .to-top {
-  position: fixed; right: 18px; bottom: 18px;
-  width: 64px; height: 64px; border-radius: 50%;
-  display: grid; place-items: center;
-  background: linear-gradient(180deg,#0891b2,#012f34);
-  box-shadow: 0 10px 30px rgba(0,0,0,.6);
-  cursor: pointer; z-index: 1300;
-}
-/* Contenedor principal */
-.section-maps{
-  display: flex;
-  justify-content: space-between; /* coloca uno a la izq y otro a la der */
-  align-items: center;
-  padding: 2rem;
-  height: auto; /* ocupa toda la pantalla */
-  box-sizing: border-box;
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #0891b2, #012f34);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    z-index: 1300;
 }
 
-/* ================= CONTADOR ================= */
+/* ==================== Contador y Botón Maps ==================== */
+.section-maps {
+    display: flex;
+    flex-direction: row; /* Por defecto en pantallas grandes */
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    min-height: 200px; /* Asegura un tamaño mínimo */
+    box-sizing: border-box;
+    gap: 1.5rem; /* Espacio entre contador y botón */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio */
+}
+
+/* Contador */
 .contador {
-  font-size: 5rem;
-  color: #fff;
-  font-weight: bold;
-  text-align: left;
-  text-shadow: 
-    1px 1px 2px #000,
-    2px 2px 4px #000,
-    3px 3px 6px #000,
-    4px 4px 8px #000;
-  transform: perspective(500px) rotateX(10deg);
-  opacity: 0;
-  transition: opacity 0.5s ease-in;
+    font-size: clamp(3rem, 8vw, 5rem); /* Ajuste responsivo del tamaño de la fuente */
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    text-shadow:
+        1px 1px 2px #000,
+        2px 2px 4px #000,
+        3px 3px 6px #000,
+        4px 4px 8px #000;
+    transform: perspective(500px) rotateX(10deg);
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    flex-shrink: 0; /* Evita que el contador se encoja */
+    /* text-align: center; /* Puede que quieras centrarlo si se apila */
 }
 
 .contador.visible {
-  opacity: 1;
+    opacity: 1;
 }
 
 .contador span {
-  display: block;
-  font-size: 2rem;
-  margin-top: .5rem;
-  color: #fff;
-  text-shadow: 
-    1px 1px 2px #000,
-    2px 2px 4px #000;
+    display: block;
+    font-size: clamp(1.2rem, 3vw, 2rem); /* Ajuste responsivo del tamaño de la fuente */
+    margin-top: 0.5rem;
+    color: #fff;
+    text-shadow:
+        1px 1px 2px #000,
+        2px 2px 4px #000;
 }
 
-/* ================= BOTÓN MAPS ================= */
+/* Botón Maps */
 .maps-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 12px 20px;
-  background: #34a853; /* verde Maps */
-  color: #fff;
-  font-weight: bold;
-  border-radius: 12px;
-  text-decoration: none;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  transform: perspective(500px) translateZ(0);
-  transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: clamp(10px, 2.5vw, 15px) clamp(15px, 4vw, 25px); /* Padding responsivo */
+    background: #34a853;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: perspective(500px) translateZ(0);
+    transition: all 0.3s ease-in-out;
+    font-size: clamp(0.9rem, 2.2vw, 1.1rem); /* Tamaño de fuente responsivo */
+    flex-shrink: 0; /* Evita que el botón se encoja */
 }
 
 .maps-btn img {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.3s ease-in-out;
+    width: clamp(24px, 5vw, 32px); /* Tamaño de imagen responsivo */
+    height: clamp(24px, 5vw, 32px);
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Hover con efecto 3D */
 .maps-btn:hover {
-  background: #2c8c46;
-  transform: perspective(500px) translateZ(10px) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    background: #2c8c46;
+    transform: perspective(500px) translateZ(10px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .maps-btn:hover img {
-  transform: rotateY(360deg);
+    transform: rotateY(360deg);
 }
-   
-/* Footer */
-footer {
-  padding: 1.2rem; text-align: center; color: var(--muted);
-  background: linear-gradient(180deg,transparent,rgba(0,0,0,0.2));
-  margin-top: 2rem; border-radius: 12px;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
 
+/* ==================== Footer ==================== */
+footer {
+    padding: 1.2rem;
+    text-align: center;
+    color: var(--muted);
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.2));
+    margin-top: 2rem;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
 .socials a {
-  padding: .5rem; border-radius: 8px; background: var(--glass); display: inline-block;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: var(--glass);
+    display: inline-block;
 }
+
 footer .socials {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem; /* Añadir espacio si es necesario */
 }
 
 footer .socials img {
-  width: 28px;   /* tamaño del icono */
-  height: 28px;  /* mantener proporción cuadrada */
-  object-fit: contain;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 footer .socials img:hover {
-  transform: scale(1.2); /* efecto hover de agrandar */
+    transform: scale(1.2);
 }
-/*icono pse*/
-.contenedor-del-logo { /* Reemplaza con la clase o ID real de tu contenedor */
-  background-color: transparent; /* O el color de fondo de tu tema (ej. #212529) */
+
+/* Icono PSE (si es un contenedor) */
+.contenedor-del-logo {
+    background-color: transparent;
 }
-/* Responsive */
+
+/* ==================== Media Queries ==================== */
 @media (max-width: 900px) {
-  #postersArea { grid-template-columns: repeat(2,1fr) }
-  #postersArea .poster.full { grid-column: span 2 }
+    #postersArea {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #postersArea .poster.full {
+        grid-column: span 2;
+    }
 }
+
+@media (max-width: 768px) {
+    .section-maps {
+        flex-direction: column; /* Apilar en pantallas más pequeñas */
+        text-align: center; /* Centrar el texto cuando se apilan */
+        gap: 1rem; /* Ajustar el espacio entre elementos apilados */
+    }
+
+    .contador {
+        text-align: center; /* Centrar el contador cuando se apila */
+    }
+}
+
 @media (max-width: 560px) {
-  #postersArea { grid-template-columns: 1fr }
-  #postersArea .poster.full { grid-column: span 1 }
-  .nav { display: none }
-  
+    #postersArea {
+        grid-template-columns: 1fr;
+    }
+
+    #postersArea .poster.full {
+        grid-column: span 1;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .header {
+        padding: 0.6rem; /* Ajuste para pantallas muy pequeñas */
+    }
+
+    .maps-btn {
+        width: 100%; /* El botón ocupa todo el ancho disponible */
+        justify-content: center; /* Centrar el contenido del botón */
+        padding: 12px; /* Ajuste de padding */
+    }
+
+    .contador {
+        margin-bottom: 1rem; /* Espacio debajo del contador */
+    }
 }
+
 /* Media Query para PC y Pantallas Grandes (p. ej., a partir de 1024px) */
 @media screen and (min-width: 1024px) {
     .manual-carousel {
-        /* Limita la altura para que parezca un banner, no una tira vertical */
-        max-height: 500px; /* Ajusta este valor (400px, 500px) a lo que mejor se vea */
-        
-        /* Asegura que el contenido (la imagen) no se salga */
+        max-height: 500px;
         overflow: hidden;
     }
-    
+
     .manual-carousel img {
-        /* Fuerza a que el objeto (la imagen) cubra el contenedor */
-        /* Esto recortará los lados si la imagen es muy alta, pero mantendrá la proporción de banner */
-        object-fit: cover; 
+        object-fit: cover;
     }
 }
