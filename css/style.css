@@ -292,7 +292,79 @@ section.section {
   box-shadow: 0 10px 30px rgba(0,0,0,.6);
   cursor: pointer; z-index: 1300;
 }
+/* Contenedor principal */
+.section-maps{
+  display: flex;
+  justify-content: space-between; /* coloca uno a la izq y otro a la der */
+  align-items: center;
+  padding: 2rem;
+  height: auto; /* ocupa toda la pantalla */
+  box-sizing: border-box;
+}
 
+/* ================= CONTADOR ================= */
+.contador {
+  font-size: 5rem;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+  text-shadow: 
+    1px 1px 2px #000,
+    2px 2px 4px #000,
+    3px 3px 6px #000,
+    4px 4px 8px #000;
+  transform: perspective(500px) rotateX(10deg);
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.contador.visible {
+  opacity: 1;
+}
+
+.contador span {
+  display: block;
+  font-size: 2rem;
+  margin-top: .5rem;
+  color: #fff;
+  text-shadow: 
+    1px 1px 2px #000,
+    2px 2px 4px #000;
+}
+
+/* ================= BOTÓN MAPS ================= */
+.maps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 20px;
+  background: #34a853; /* verde Maps */
+  color: #fff;
+  font-weight: bold;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transform: perspective(500px) translateZ(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.maps-btn img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover con efecto 3D */
+.maps-btn:hover {
+  background: #2c8c46;
+  transform: perspective(500px) translateZ(10px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.maps-btn:hover img {
+  transform: rotateY(360deg);
+}
+   
 /* Footer */
 footer {
   padding: 1.2rem; text-align: center; color: var(--muted);

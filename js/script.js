@@ -53,6 +53,7 @@
         "img/posters/proyectos.png",
         "img/posters/rectoraAdmisiones.png",
         "img/posters/costos2026.png",
+        "img/posters/cultura_ciencia.png",
         "img/posters/admisiones2026.png", // Este es el especial
       ];
 
@@ -135,3 +136,9 @@
       $(document).on('click',function(e){ if(!$(e.target).closest('#sidebar, #openSidebar, #menuToggle').length){ $('#sidebar').removeClass('open'); } });
 
     });
+document.querySelectorAll('.social-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    window.open(link.dataset.href, "_blank");
+  });
+});
