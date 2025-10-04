@@ -48,7 +48,8 @@
    
    // Array con diferentes imágenes
       const imagenes = [
-        "img/posters/ultimaNota.png",
+        "img/posters/folleto1.png",
+        "img/posters/folleto2.png",
         "img/posters/proyectos.png",
         "img/posters/rectoraAdmisiones.png",
         "img/posters/costos2026.png",
@@ -58,7 +59,8 @@
       // Generamos los posters dinámicamente
       const postersHTML = imagenes.map((src, i) => {
         // Si es el poster de admisiones2026, le agregamos la clase "full"
-        const isFull = src.includes("admisiones2026");
+        const isFull = src.includes("admisiones2026") || src.includes("folleto1") || src.includes("folleto2");
+
         return `
           <div class="poster ${isFull ? "full" : ""}">
             <a><img src="${src}" alt="Poster ${i + 1}"></a>
