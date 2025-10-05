@@ -52,6 +52,7 @@
         "img/posters/folleto2.png",
         "img/posters/reingenieria_pedagogica.jpeg",
         "img/posters/matriculas_abiertas.png",
+        "img/posters/cambio_agentes_educativos.jpeg",
         "img/posters/proyectos.png",
         "img/posters/rectoraAdmisiones.png",
         "img/posters/costos2026.png",
@@ -62,7 +63,7 @@
       // Generamos los posters dinámicamente
       const postersHTML = imagenes.map((src, i) => {
         // Si es el poster de admisiones2026, le agregamos la clase "full"
-        const isFull = src.includes("admisiones2026") || src.includes("folleto1") || src.includes("folleto2")|| src.includes("reingenieria_pedagogica")|| src.includes("matriculas_abiertas") ;
+        const isFull = src.includes("admisiones2026") || src.includes("folleto1") || src.includes("folleto2")|| src.includes("reingenieria_pedagogica")|| src.includes("matriculas_abiertas") || src.includes("cambio_agentes_educativos");
 
         return `
           <div class="poster ${isFull ? "full" : ""}">
