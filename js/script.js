@@ -56,7 +56,7 @@
         "img/posters/proyectos.png",
         "img/posters/rectoraAdmisiones.png",
         "img/posters/costos2026.png",
-        "img/posters/cultura_ciencia.png",
+        // "img/posters/cultura_ciencia.png",
         "img/posters/admisiones2026.png", // Este es el especial
       ];
 
