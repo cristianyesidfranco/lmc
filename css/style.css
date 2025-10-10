@@ -643,24 +643,32 @@ footer .socials img:hover {
 }
 
 .community-title {
-    /* Aseguramos que el texto esté alineado al centro si tuviera saltos de línea */
     text-align: center; 
-    
-    /* El resto de los estilos del título se mantiene igual... */
     font-family: system-ui;
-    /* ... */
-}
+    font-size: 3rem; /* O el tamaño deseado */
+    position: relative; /* Es necesario para que ::before se posicione correctamente */
+    z-index: 1; /* Asegura que el texto original esté por encima del ::before */
 
-/* Pseudo-elemento para el efecto de contorno con color de relleno */
+    color: transparent; 
+    -webkit-text-stroke: 1px var(--accent, #00ff0d);
+    text-stroke: 1px var(--accent, #00ff0d);
+    
+    transition: all 0.4s ease; /* Mantener la transición para los efectos 3D */
+}
+/* Pseudo-elemento para el efecto de relleno (detrás del contorno) */
 .community-title::before {
-    content: attr(data-text); /* Replicar el texto */
+    content: attr(data-text); 
     position: absolute;
     top: 0;
     left: 0;
-    color: #fff; /* Color de relleno blanco */
-    -webkit-text-stroke: 1px #000; /* Contorno para el texto de relleno */
-    text-shadow: none; /* Eliminar sombra del pseudo-elemento */
-    z-index: -1; /* Detrás del texto principal (transparente con contorno) */
+    
+    /* SOLUCIÓN CLAVE 2: Le damos el color de relleno y eliminamos el contorno */
+    color: #fff; /* O el color que quieres que tenga el relleno */
+    -webkit-text-stroke: 0; 
+    text-stroke: 0;
+    
+    text-shadow: none; 
+    z-index: -1; /* Detrás del texto principal (contorno) */
 }
 
 /* Efecto Hover 3D titulo comunidad*/
