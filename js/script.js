@@ -74,7 +74,7 @@ $(function() {
     
     
     // =======================================================
-    // 4. LÓGICA DEL CONTADOR DE AÑOS
+    // 4. LÓGICA DEL CONTADOR DE AÑOS Y TÍTULO
     // =======================================================
 
     function iniciarContador() {
@@ -120,8 +120,54 @@ $(function() {
 
 
     // =======================================================
-    // 5. LÓGICA DE CONTENIDO PRINCIPAL Y CARRUSEL AUTOMÁTICO
+    // 5. LÓGICA DE CONTENIDO PRINCIPAL Y CARRUSEL AUTOMÁTICO (CORREGIDO)
     // =======================================================
+
+    /**
+     * Función reutilizable para inicializar cualquier carrusel automático.
+     * @param {string} trackSelector Selector del contenedor de slides (ej: '#autoTrack').
+     * @param {string} dotsSelector Selector del contenedor de puntos (ej: '#dots').
+     * @param {string} childSelector Selector de los elementos a deslizar dentro del track (ej: 'img' o '.poster').
+     */
+    function setupAutomaticCarousel(trackSelector, dotsSelector, childSelector) {
+        const $track = $(trackSelector);
+        const $dotsContainer = $(dotsSelector);
+
+        // 🔑 VERIFICACIÓN CLAVE: Ahora usa el selector de hijos provisto
+        if (!$track.length || !$dotsContainer.length || $track.children(childSelector).length === 0) {
+            return; 
+        }
+
+        const slides = $track.children(childSelector).length;
+        let idx = 0;
+        let auto;
+
+        // 1. Generar/borrar puntos
+        $dotsContainer.empty();
+        for (let i = 0; i < slides; i++) {
+            $dotsContainer.append('<div class="dot" data-i="' + i + '"></div>');
+        }
+
+        const $dots = $dotsContainer.children('.dot');
+
+        function goTo(i) {
+            idx = (i + slides) % slides;
+            // Calcular el desplazamiento (cada slide ocupa 100% del track)
+            const offset = -idx * 100; 
+            $track.css('transform', `translateX(${offset}%)`);
+            $dots.removeClass('active').eq(idx).addClass('active');
+        }
+
+        goTo(0);
+        auto = setInterval(() => { goTo(idx + 1); }, 4000);
+
+        $dots.off('click').on('click', function() {
+            clearInterval(auto);
+            goTo($(this).data('i'));
+            // Reinicia el intervalo después del clic manual
+            auto = setInterval(() => goTo(idx + 1), 4000); 
+        });
+    }
 
     // Toggle categories
     $('.toggle-cat').on('click',function(e){
@@ -149,17 +195,10 @@ $(function() {
         $('#sidebar').removeClass('open');
     });
 
-    // Carrusel automático (Inicialización y lógica)
-    const $track = $('#autoTrack');
+    // Grid de posters (Lógica de generación dinámica)
     const $postersArea = $('#postersArea'); 
-    const $dotsContainer = $('#dots');
     
-    // VERIFICACIÓN CLAVE: Solo ejecutar si los elementos existen
-    if ($track.length && $postersArea.length && $dotsContainer.length) {
-        
-        const slides = $track.children().length;
-        let idx=0;
-
+    if ($postersArea.length) {
         // Array con diferentes imágenes para posters
         const imagenes = [
             "img/posters/folleto1.png", "img/posters/folleto2.png", "img/posters/reingenieria_pedagogica.jpeg",
@@ -168,32 +207,15 @@ $(function() {
         ];
 
         // Generamos los posters dinámicamente
+        // Nota: Cada poster es un DIV con la clase .poster (requerido para el carrusel en este caso)
         const postersHTML = imagenes.map((src, i) => {
             const isFull = src.includes("admisiones2026") || src.includes("folleto1") || src.includes("folleto2") || src.includes("reingenieria_pedagogica") || src.includes("matriculas_abiertas") || src.includes("cambio_agentes_educativos");
-            return `<div class="poster ${isFull ? "full" : ""}"><a href="#"><img src="${src}" alt="Poster ${i + 1}"></a></div>`;
+            // Se usa 'poster-slide' para que no interfiera con otros usos de la clase .poster en el carrusel principal si se decide usar solo para el grid.
+            return `<div class="poster poster-slide ${isFull ? "full" : ""}"><a href="#"><img src="${src}" alt="Poster ${i + 1}"></a></div>`;
         }).join("");
 
-        // Insertamos en el contenedor
+        // Insertamos en el contenedor (que actúa como grid estático o como un segundo carrusel si se configura el HTML)
         $postersArea.html(postersHTML);
-        
-        // generar dots y lógica de carrusel automático
-        for(let i=0;i<slides;i++){ $dotsContainer.append('<div class="dot" data-i="'+i+'"></div>'); }
-        
-        const $dots = $('#dots .dot');
-        function goTo(i){ 
-            idx = (i+slides)%slides; 
-            $track.css('transform',`translateX(${-idx*100}%)`); 
-            $dots.removeClass('active').eq(idx).addClass('active'); 
-        }
-        
-        goTo(0);
-        let auto = setInterval(()=>{ goTo(idx+1); },4000);
-        
-        $dots.on('click',function(){ 
-            clearInterval(auto); 
-            goTo($(this).data('i')); 
-            auto=setInterval(()=>goTo(idx+1),4000); 
-        });
     }
 
     // Animaciones de rebote
@@ -222,11 +244,24 @@ $(function() {
     $(document).on('click',function(e){ if(!$(e.target).closest('#sidebar, #openSidebar, #menuToggle').length){ $('#sidebar').removeClass('open'); } });
     
     
-    // =======================================================
-    // 6. INICIALIZACIÓN FINAL: Se ejecuta al cargar el DOM
-    // =======================================================
+  // =======================================================
+// 6. INICIALIZACIÓN FINAL: Se ejecuta al cargar el DOM
+// =======================================================
 
-    setupManualCarousel(); 
-    setupCommunityTitle();
-    setupContadorObserver(); 
+setupManualCarousel(); 
+setupCommunityTitle();
+setupContadorObserver(); 
+    
+// 1. Inicialización del Carrusel PRINCIPAL (asumiendo que usa #dots y <img>)
+// Si esta es tu página de inicio, usa los selectores originales.
+setupAutomaticCarousel('#autoTrack', '#dots', 'img'); 
+    
+// 2. Inicialización del Carrusel de COMUNIDAD.HTML (usa #dots-blog y .poster)
+// Esto asegura que la página de comunidad siga funcionando.
+setupAutomaticCarousel('#autoTrack', '#dots-blog', '.poster'); 
+    
+// 📢 Nota: El carrusel que no exista en la página actual será ignorado por el script.
+
+
+
 });
