@@ -196,4 +196,46 @@ $(function() {
         
         // ... cualquier otra lógica específica de esta página ...
     });
+// =======================================================
+    // 3. LÓGICA DEL CARRUSEL MANUAL (REUTILIZABLE)
+    // =======================================================
+
+    function setupManualCarousel() {
+        // 1. Obtener elementos
+        const $slidesTrack = $('#slidesTrack');
+        const $prevBtn = $('#prev');
+        const $nextBtn = $('#next');
+
+        // Si los elementos no existen (ej: estamos en otra página), salimos
+        if (!$slidesTrack.length) return;
+
+        // 2. Calcular el número total de imágenes
+        const manualSlides = $slidesTrack.children('img').length;
+        let manualIdx = 0;
+
+        // 3. Función para mover el carrusel
+        function goToManualSlide(index) {
+            // Asegura que el índice dé la vuelta (loop)
+            manualIdx = (index + manualSlides) % manualSlides; 
+            
+            // Calcula el desplazamiento: cada slide es el 100% del ancho
+            const offset = -manualIdx * 100;
+            
+            // Aplica la transformación CSS
+            $slidesTrack.css('transform', `translateX(${offset}%)`);
+        }
+
+        // 4. Asignar eventos a las flechas (Usamos .off() antes de .on() para evitar duplicados en carga dinámica)
+        $nextBtn.off('click').on('click', function() {
+            goToManualSlide(manualIdx + 1);
+        });
+
+        $prevBtn.off('click').on('click', function() {
+            goToManualSlide(manualIdx - 1);
+        });
+
+        // 5. Inicializar la posición
+        goToManualSlide(0);
+    }
+    
   });
