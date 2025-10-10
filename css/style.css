@@ -1,3 +1,6 @@
+/* Importar fuentes de Google Fonts */
+/* Cinzel Decorative es una buena opción para un estilo clásico con serifa */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
 /* Reset y variables */
 :root {
     --bg: #07101a;
@@ -624,6 +627,58 @@ footer .socials img:hover {
 .contenedor-del-logo {
     background-color: transparent;
 }
+
+/* Titulo comunidad*/
+.text-container {
+    /* Nueva lógica de centrado para que ocupe y centre en el viewport */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    min-height: 20vh; /* Ocupa gran parte de la altura visible de la ventana */
+    width: 100%; /* Ocupa todo el ancho */
+    
+    perspective: 1000px;
+    cursor: pointer;
+    /* Asegúrate de que no haya margen o padding indeseado aquí */
+}
+
+.community-title {
+    /* Aseguramos que el texto esté alineado al centro si tuviera saltos de línea */
+    text-align: center; 
+    
+    /* El resto de los estilos del título se mantiene igual... */
+    font-family: system-ui;
+    /* ... */
+}
+
+/* Pseudo-elemento para el efecto de contorno con color de relleno */
+.community-title::before {
+    content: attr(data-text); /* Replicar el texto */
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff; /* Color de relleno blanco */
+    -webkit-text-stroke: 1px #000; /* Contorno para el texto de relleno */
+    text-shadow: none; /* Eliminar sombra del pseudo-elemento */
+    z-index: -1; /* Detrás del texto principal (transparente con contorno) */
+}
+
+/* Efecto Hover 3D titulo comunidad*/
+.text-container:hover .community-title {
+    transform: rotateX(10deg) rotateY(10deg) translateZ(20px) scale(1.05); /* Rotación y desplazamiento en 3D */
+    text-shadow: 
+        -2px -2px 0 #a6e70d, 
+        2px -2px 0 #1ba01b,  
+        -2px 2px 0 #55b91b,  
+        2px 2px 0 #000000,
+        5px 5px 15px rgba(0, 0, 0, 0.6); /* Sombra más pronunciada para mayor profundidad */
+}
+
+.text-container:hover .community-title::before {
+    transform: translateZ(-5px); /* Pequeño desplazamiento hacia atrás para el efecto 3D */
+    text-shadow: 2px 2px 5px rgba(26, 138, 128, 0.3); /* Sombra interna para el efecto */
+}
+
 
 /* ==================== Media Queries ==================== */
 @media (max-width: 900px) {

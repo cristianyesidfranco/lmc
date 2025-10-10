@@ -1,37 +1,37 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Liceo Mixto Los Centauros - Demo</title>
+  <title>Liceo Mixto Los Centauros - LMC</title>
   <meta name="description" content="Sitio demo responsive con menú toggle, carruseles y secciones informativas">
   <link rel="stylesheet" href="css/style.css">
-  <!-- jQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 </head>
+
 <body>
 
-
-  <!-- SIDEBAR MENU -->
   <aside class="sidebar" id="sidebar">
     <div class="side-header">
-      <div style="width:44px;height:44px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#7afcff);display:grid;place-items:center;color:#012">LMC</div>
+      <div
+        style="width:44px;height:44px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#7afcff);display:grid;place-items:center;color:#012">
+        LMC</div>
       <div>
         <div style="font-weight:700">Liceo Mixto Centauros</div>
-        <div style="font-size:.85rem;color:var(--muted)"></div>
+        <div style="font-size:.85rem;color:var(--muted)">Educación con tradición</div>
       </div>
     </div>
 
     <ul class="menu-list">
-      <!-- Home con enlace 3D ya en header, repetimos como acceso rápido -->
-      <li class="menu-item"><a href="#" class="home-link"><span class="title"><span class="dot"></span><span>Inicio</span></span></a></li>
-
-      <!-- Categoria 1 -->
+      <li class="menu-item"><a href="#" class="home-link"><span class="title"><span
+              class="dot"></span><span>Inicio</span></span></a></li>
       <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub1"><span class="title"><span class="dot"></span><span>Liceo Mixto Los Centauros</span></span><span>▼</span></a>
+        <a href="#" class="toggle-cat" data-target="#sub1"><span class="title"><span class="dot"></span><span>Liceo
+              Mixto Los Centauros</span></span><span>▼</span></a>
         <ul class="sublist" id="sub1">
-          <li><a href="#/liceo/comunidad" class="nav-link" data-page="liceo_comunidad">Comunidad</a></li>
+          <li><a href="Comunidad.html">Comunidad</a></li>
           <li><a href="#/liceo/resena" class="nav-link" data-page="liceo_resena">Reseña histórica</a></li>
           <li><a href="#/liceo/nuestro" class="nav-link" data-page="liceo_nuestro">Nuestro Colegio</a></li>
           <li><a href="#/liceo/historia" class="nav-link" data-page="liceo_historia">Historia</a></li>
@@ -39,10 +39,9 @@
           <li><a href="#/liceo/fundadores" class="nav-link" data-page="liceo_fundadores">Fundadores</a></li>
         </ul>
       </li>
-
-      <!-- Categoria 2 -->
       <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub2"><span class="title"><span class="dot"></span><span>Académico</span></span><span>▼</span></a>
+        <a href="#" class="toggle-cat" data-target="#sub2"><span class="title"><span
+              class="dot"></span><span>Académico</span></span><span>▼</span></a>
         <ul class="sublist" id="sub2">
           <li><a href="#/academico/directivo" class="nav-link" data-page="aca_directivo">Equipo directivo</a></li>
           <li><a href="#/academico/propuesta" class="nav-link" data-page="aca_propuesta">Propuesta pedagógica</a></li>
@@ -52,47 +51,45 @@
           <li><a href="#/academico/optativas" class="nav-link" data-page="aca_optativas">Optativas lúdicas</a></li>
         </ul>
       </li>
-
-      <!-- Categoria 3 -->
       <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub3"><span class="title"><span class="dot"></span><span>socioemocional</span></span><span>▼</span></a>
+        <a href="#" class="toggle-cat" data-target="#sub3"><span class="title"><span
+              class="dot"></span><span>socioemocional</span></span><span>▼</span></a>
         <ul class="sublist" id="sub3">
           <li><a href="#/pastoral/catequesis" class="nav-link" data-page="pas_catequesis">Catequesis</a></li>
           <li><a href="#/pastoral/servicio" class="nav-link" data-page="pas_servicio">Servicio social</a></li>
           <li><a href="#/pastoral/tribu" class="nav-link" data-page="pas_tribu">Tribu Centauriana</a></li>
-          <li><a href="#/pastoral/semilleros" class="nav-link" data-page="pas_semilleros">Semilleros de investigación e innovación</a></li>
+          <li><a href="#/pastoral/semilleros" class="nav-link" data-page="pas_semilleros">Semilleros de investigación e
+              innovación</a></li>
         </ul>
       </li>
-
-      <!-- Categoria 4 -->
       <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub4"><span class="title"><span class="dot"></span><span>Convivencial</span></span><span>▼</span></a>
+        <a href="#" class="toggle-cat" data-target="#sub4"><span class="title"><span
+              class="dot"></span><span>Convivencial</span></span><span>▼</span></a>
         <ul class="sublist" id="sub4">
           <li><a href="#/convivencial/uniformes" class="nav-link" data-page="con_uniformes">Uniformes</a></li>
           <li><a href="#/convivencial/manual" class="nav-link" data-page="con_manual">Manual de convivencia</a></li>
         </ul>
       </li>
-
-      <!-- Categoria 5 -->
       <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub5"><span class="title"><span class="dot"></span><span>Gobierno escolar</span></span><span>▼</span></a>
+        <a href="#" class="toggle-cat" data-target="#sub5"><span class="title"><span class="dot"></span><span>Gobierno
+              escolar</span></span><span>▼</span></a>
         <ul class="sublist" id="sub5">
           <li><a href="#/gobierno/padres" class="nav-link" data-page="gov_padres">Consejo de padres</a></li>
           <li><a href="#/gobierno/estudiantil" class="nav-link" data-page="gov_estudiantil">Consejo estudiantil</a></li>
         </ul>
       </li>
-
-      <!-- Resto Categoria 6-8 simple -->
-      <li class="menu-item"><a href="#/admisiones" class="nav-link" data-page="adm_admisiones"><span class="title"><span class="dot"></span><span>Admisiones</span></span></a></li>
-      <li class="menu-item"><a href="#/entorno" class="nav-link" data-page="entorno_virtual"><span class="title"><span class="dot"></span><span>Entorno virtual</span></span></a></li>
-      <li class="menu-item"><a href="#socials" class="nav-link" data-page="contactenos"><span class="title"><span class="dot"></span><span>Contáctenos</span></span></a></li>
+      <li class="menu-item"><a href="#/admisiones" class="nav-link" data-page="adm_admisiones"><span class="title"><span
+              class="dot"></span><span>Admisiones</span></span></a></li>
+      <li class="menu-item"><a href="#/entorno" class="nav-link" data-page="entorno_virtual"><span class="title"><span
+              class="dot"></span><span>Entorno virtual</span></span></a></li>
+      <li class="menu-item"><a href="#socials" class="" data-page=""><span class="title"><span
+              class="dot"></span><span>Contáctenos</span></span></a></li>
     </ul>
-
   </aside>
 
-  <!-- MAIN -->
   <main class="container" id="mainContent">
-    <!-- Section 1: Carrusel automático -->
+    <div id="header-placeholder"></div>
+
     <section class="section" id="section1">
       <div class="carousel" aria-roledescription="carousel">
         <div class="track" id="autoTrack">
@@ -105,78 +102,37 @@
           <img src="img/carruselAutomatico/gradoPreescolar.png" alt="Imagen 2">
           <img src="img/carruselAutomatico/mesMarianoPreescolar.png" alt="Imagen 2">
           <img src="img/carruselAutomatico/diaDelMaestro.png" alt="Imagen 3">
-          
-          
         </div>
         <div class="dots" id="dots"></div>
       </div>
     </section>
-      <!-- HEADER -->
-    <header class="container">
-      <div class="brand">
-        <div class="home-3d" id="homeIcon" title="Ir a inicio">
-          <div class="cube">
-            <div class="face top"></div>
-            <div class="face front"><img src="img/logo_icon_transparent.ico" alt=""></div>
-            <div class="face right">LMC</div>
-          </div>
-          <div class="home-cloud" id="homeCloud">Bienvenidos a nuestro colegio, un espacio de fe, educación de calidad y fortalecimiento socioemocional.</div>
-        </div>
-        <div class="title" >
-          <strong style="font-size:1.05rem" id="openSidebar">Liceo Mixto Centauros</strong>
-          <div style="font-size:.85rem;color:var(--muted)">Educación con tradición</div>
-        </div>
-      </div>
 
-      <div class="nav">
-        <nav>
-          <ul style="display:flex;gap:.8rem;align-items:center;list-style:none;margin:0;padding:0">
-            <!-- <li><a href="#" class="btn-3d" id="openSidebar">Liceo Mixto Centauros</a></li> -->
-            <li><a href="#socials">Contáctenos</a></li>
-            <!-- <li><a href="#contacto">Pagos</a></li> -->
-            <li><a href="#postersArea">Inscripciones 2026</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="menu-toggle" id="menuToggle">
-        <div class="hamburger"><span></span><span></span><span></span></div>
-      </div>
-    </header>
-     <!-- Sections 5-16: 12 posters informativos -->
     <section class="section">
       <div class="posters" id="postersArea"></div>
     </section>
-    <!-- Section 2..4: Grid 4 con animaciones de rebote -->
+
     <section class="section">
-       <div class="grid"> 
-          <a href="circulares.html" class="card">
-            <img src="img/circularesInformativas.png" alt="Circulares">
-            <h3>CIRCULARES</h3>
-          </a>
-
-          <a href="calendario.html" class="card">
-            <img src="img/calendario.png" alt="Calendario escolar">
-            <h3>CALENDARIO ESCOLAR</h3>
-          </a>
-
-          <a href="padres.html" class="card">
-            <img src="img/atencionPadres.png" alt="Atención a padres">
-            <h3>ATENCIÓN A PADRES</h3>
-          </a>
-
-          <a href="costos.html" class="card">
-            <img src="img/costos.png" alt="Costos 2025">
-            <h3>COSTOS 2025</h3>
-          </a>
-        </div>
+      <div class="grid">
+        <a href="circulares.html" class="card">
+          <img src="img/circularesInformativas.png" alt="Circulares">
+          <h3>CIRCULARES</h3>
+        </a>
+        <a href="calendario.html" class="card">
+          <img src="img/calendario.png" alt="Calendario escolar">
+          <h3>CALENDARIO ESCOLAR</h3>
+        </a>
+        <a href="padres.html" class="card">
+          <img src="img/atencionPadres.png" alt="Atención a padres">
+          <h3>ATENCIÓN A PADRES</h3>
+        </a>
+        <a href="costos.html" class="card">
+          <img src="img/costos.png" alt="Costos 2025">
+          <h3>COSTOS 2025</h3>
+        </a>
+      </div>
     </section>
 
-   
-
-    <!-- Section 13: Carrusel manual -->
     <section class="section" id="section13">
-     
       <div class="manual-carousel" id="manualCarousel">
         <div class="slides" id="slidesTrack">
           <img src="img/carruselManual/hallowen2025.png" alt="G1">
@@ -188,91 +144,29 @@
       </div>
     </section>
 
-    <!-- Section 14: Horarios visuales -->
     <section class="section" id="schedules">
-      
       <div class="section-maps">
         <div>
           <h3>📍 ¡Ven y descubre nuestra ubicación en Google Maps!</h3>
-          <a href="https://www.google.com/maps/place/Liceo+Mixto+los+Centauros/@4.6241982,-74.1953357,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9e736648fdaf:0xf3728fd9756866c!8m2!3d4.6241982!4d-74.1927608!16s%2Fg%2F1pv0rjrzh?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="maps-btn">
-          <img src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png" alt="Google Maps">
-          <span>Ver ubicación</span>
-        </a> 
+          <a href="https://www.google.com/maps/place/Liceo+Mixto+los+Centauros/@4.6241982,-74.1953357,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9e736648fdaf:0xf3728fd9756866c!8m2!3d4.6241982!4d-74.1927608!16s%2Fg%2F1pv0rjrzh?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" class="maps-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png" alt="Google Maps">
+            <span>Ver ubicación</span>
+          </a>
         </div>
-         
         <div class="contador" id="contador">0<span>Años</span></div>
       </div>
     </section>
-    
-    <!-- Section 15: Pago en linea PSE
-    <section class="section" id="payments">
-      <h3>Pagos en línea</h3>
-      <div class="pay-area">
-        <div>
-          
-          <ul style="color:var(--muted)"><li>Grupo AVAL</li></ul>
-        </div>
-        <div>
-          <!-- <a class="btn-3d" id="pseBtn" href="https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval" target="_blank">Pagar con PSE </a> -->
-        <!-- </div>
-        <div  style="width:120px" > <a href="https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval"><img src="img/pseFondoAzul.png" alt="Entidad" class="contenedor-del-logo" style="width:100%;border-radius:8px"></a> 
-        
-        </div>
-        <p style="color:var(--muted)">Pulse el botón para ir al servicio de pagos grupo AVAL . filtro Liceo Mixto Centauros</p>
-      </div>
-    </section> --> 
-
-    <!-- Section 16-23: 8 posters más (total >20) -->
-    
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div>Contacto: colegio@lmc.edu.co | Tel: +57 3013383883</div>
-        <div class="socials" id="socials" style="margin-top:.8rem">
-          <a href="#" class="social-link" data-href="https://www.facebook.com/LiceoCentauros/"> <img src="img/generated-image-0bdd18ee-dbb2-4081-8486-be2ffd49048d.png" alt=""> </a>
-          <a href="#" class="social-link" data-href="https://www.youtube.com/@liceomixtoloscentauros6322"> <img src="img/generated-image-3695af53-0b14-4759-b1c2-c4b885c06436.png" alt=""> </a>
-          <a href="#" class="social-link" data-href="https://wa.me/573013383883?text=Hola%20quiero%20más%20informació"><img src="img/generated-image-b692c3a3-0a8e-4bba-9ec3-58cc10f64731.png" alt=""> </a>
-          <a href="#" class="social-link" data-href="https://www.tiktok.com/@l.m.centauros"> <img src="img/generated-image-c4daba7e-fa29-491c-9622-ee0057962f50.png" alt=""> </a>
-          <a href="#" class="social-link" data-href="https://www.instagram.com/liceomixtoloscentauros/?hl=es"> <img src="img/ChatGPT Image 4 oct 2025, 11_13_48.png" alt=""> </a>
-        </div>
-      </div>
-    </footer>
 
   </main>
 
-  <!-- Boton subir -->
+  <div id="footer-placeholder"></div>
+
   <div class="to-top" id="toTop" title="Subir">
     ↑
   </div>
 
-<script src="js/script.js"></script>
-<script>
-    function iniciarContador() {
-      let contador = 0;
-      const elemento = document.getElementById("contador");
-      const intervalo = setInterval(() => {
-        contador++;
-        elemento.innerHTML = contador + "<span>Años</span>";
-        if (contador >= 31) {
-          clearInterval(intervalo);
-        }
-      }, 100); // velocidad del conteo
-    }
-
-    // Usamos Intersection Observer
-    const contadorElement = document.getElementById("contador");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          contadorElement.classList.add("visible");
-          iniciarContador();
-          observer.disconnect(); // Evita que se repita el conteo
-        }
-      });
-    }, { threshold: 0.5 });
-
-    observer.observe(contadorElement);
-</script>
+  <script src="js/script.js"></script>
 </body>
+
 </html>
