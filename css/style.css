@@ -388,7 +388,40 @@ section.section {
 #postersArea .poster.full {
     grid-column: 1 / span 4;
 }
+/* Posters en grilla (4 PC - 2 tablet - 1 móvil) */
+#postersArea1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin: 20px auto;
+}
 
+#postersArea1 .poster {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#postersArea1 .poster img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#postersArea1 .poster img:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+#postersArea1 .poster.full {
+    grid-column: 1 / span 4;
+}
 /* Carrusel manual (seccion 13) */
 .manual-carousel {
     position: relative;
@@ -855,6 +888,13 @@ footer .socials img:hover {
     #postersArea .poster.full {
         grid-column: span 2;
     }
+     #postersArea1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #postersArea1 .poster.full {
+        grid-column: span 2;
+    }
 }
 
 @media (max-width: 768px) {
@@ -877,7 +917,13 @@ footer .socials img:hover {
     #postersArea .poster.full {
         grid-column: span 1;
     }
+     #postersArea1 {
+        grid-template-columns: 1fr;
+    }
 
+    #postersArea1 .poster.full {
+        grid-column: span 1;
+    }
     .nav {
         display: none;
     }
