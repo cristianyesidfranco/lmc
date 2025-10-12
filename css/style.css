@@ -623,39 +623,54 @@ section.section {
 .maps-btn:hover img {
     transform: rotateY(360deg);
 }
-/* El contenedor establece la perspectiva para que el efecto 3D sea visible */
+/* 🔑 CLAVE 1: Contenedor con ancho máximo y perspectiva dinámica */
 .video-container {
-    width: 600px;
-    height: 350px;
-    /* 🔑 CLAVE 1: Define la profundidad y el punto de vista 3D */
+    /* Define el ancho máximo, por ejemplo, 90% de la pantalla */
+    width: 90vw; 
+    /* El ancho máximo no debe superar un tamaño de escritorio estándar */
+    max-width: 800px; 
+    
+    /* La altura se calcula con padding (el truco del 16:9) */
+    position: relative;
+    
+    /* Define la profundidad 3D. 1000px es bueno. */
     perspective: 1000px; 
+    margin: 20px auto; /* Centrar y añadir espacio */
 }
 
-#video3D {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* 🔑 CLAVE 2: Proporción 16:9 (El truco del padding-top) */
+/* Esto mantiene la altura proporcional al ancho (16:9) */
+.video-container::before {
+    content: '';
     display: block;
+    /* (9 / 16) * 100 = 56.25% */
+    padding-top: 56.25%; /* Esto fuerza la altura para mantener la relación 16:9 */
+}
+
+
+#video3D {
+    /* 🔑 CLAVE 3: Ocupar todo el contenedor relativo */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* ¡CLAVE! Ocupa el ancho total del contenedor */
+    height: 100%; /* ¡CLAVE! Ocupa la altura total (definida por el padding-top) */
+    
+    /* Propiedades de estilo y 3D */
+    object-fit: cover;
     border: 5px solid #ecf0f1;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    
-    /* 🔑 CLAVE 2: Aplica la rotación inicial y la transición */
-    /* rotateY(0deg) lo deja plano al inicio */
-    transform: rotateY(0deg); 
-    
-    /* Hace que la transición del 3D sea suave */
+    transform: rotateY(0deg) scale(1); 
     transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out; 
-    
-    /* Asegura que el backface no sea visible durante la rotación */
     transform-style: preserve-3d;
 }
 
-/* 🔑 CLAVE 3: El efecto de rotación al pasar el mouse (el 'hover')
-#video3D:hover {
-    /* Rota el video 15 grados en el eje Y (como la portada de un libro que se abre) */
-    /* transform: rotateY(15deg) scale(1.05); 
-    box-shadow: 0 40px 80px rgba(46, 204, 113, 0.7); Sombra que brilla
-} */ 
+/* CLASE CSS (usada por jQuery) */
+.is-rotated-3d {
+    /* Rotación 3D y ligero aumento de escala */
+    transform: rotateY(15deg) scale(1.05) !important; 
+    box-shadow: 0 40px 80px rgba(46, 204, 113, 0.7) !important; 
+}
 /* ==================== Footer ==================== */
 footer {
     padding: 1.2rem;
