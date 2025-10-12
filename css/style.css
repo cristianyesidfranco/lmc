@@ -623,6 +623,7 @@ section.section {
 .maps-btn:hover img {
     transform: rotateY(360deg);
 }
+
 /* 🔑 CLAVE 1: Contenedor con ancho máximo y perspectiva dinámica */
 .video-container {
     /* Define el ancho máximo, por ejemplo, 90% de la pantalla */
