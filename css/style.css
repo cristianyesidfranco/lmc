@@ -129,7 +129,13 @@ header {
     font-weight: 600;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
-
+/*parrafo general*/
+p{
+    margin: 0;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Responsivo */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 /* Toggle menu (mobile) */
 .menu-toggle {
     display: flex;
@@ -617,7 +623,39 @@ section.section {
 .maps-btn:hover img {
     transform: rotateY(360deg);
 }
+/* El contenedor establece la perspectiva para que el efecto 3D sea visible */
+.video-container {
+    width: 600px;
+    height: 350px;
+    /* 🔑 CLAVE 1: Define la profundidad y el punto de vista 3D */
+    perspective: 1000px; 
+}
 
+#video3D {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: 5px solid #ecf0f1;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    
+    /* 🔑 CLAVE 2: Aplica la rotación inicial y la transición */
+    /* rotateY(0deg) lo deja plano al inicio */
+    transform: rotateY(0deg); 
+    
+    /* Hace que la transición del 3D sea suave */
+    transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out; 
+    
+    /* Asegura que el backface no sea visible durante la rotación */
+    transform-style: preserve-3d;
+}
+
+/* 🔑 CLAVE 3: El efecto de rotación al pasar el mouse (el 'hover')
+#video3D:hover {
+    /* Rota el video 15 grados en el eje Y (como la portada de un libro que se abre) */
+    /* transform: rotateY(15deg) scale(1.05); 
+    box-shadow: 0 40px 80px rgba(46, 204, 113, 0.7); Sombra que brilla
+} */ 
 /* ==================== Footer ==================== */
 footer {
     padding: 1.2rem;
@@ -720,6 +758,113 @@ footer .socials img:hover {
     text-shadow: 2px 2px 5px rgba(26, 138, 128, 0.3); /* Sombra interna para el efecto */
 }
   
+/* Titulo simbolos*/
+.text-container1 {
+    /* Nueva lógica de centrado para que ocupe y centre en el viewport */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    min-height: 20vh; /* Ocupa gran parte de la altura visible de la ventana */
+    width: 100%; /* Ocupa todo el ancho */
+    
+    perspective: 1000px;
+    cursor: pointer;
+    /* Asegúrate de que no haya margen o padding indeseado aquí */
+}
+
+.community-title1 {
+    text-align: center; 
+    font-family: system-ui;
+    font-size: 3rem; /* O el tamaño deseado */
+    position: relative; /* Es necesario para que ::before se posicione correctamente */
+    z-index: 1; /* Asegura que el texto original esté por encima del ::before */
+
+    color: transparent; 
+    -webkit-text-stroke: 1px var(--accent, #00ff0d);
+    text-stroke: 1px var(--accent, #00ff0d);
+    
+    transition: all 0.4s ease; /* Mantener la transición para los efectos 3D */
+}
+/* Pseudo-elemento para el efecto de relleno (detrás del contorno) */
+.community-title1::before {
+    content: attr(data-text); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* SOLUCIÓN CLAVE 2: Le damos el color de relleno y eliminamos el contorno */
+    color: #fff; /* O el color que quieres que tenga el relleno */
+    -webkit-text-stroke: 0; 
+    text-stroke: 0;
+    
+    text-shadow: none; 
+    z-index: -1; /* Detrás del texto principal (contorno) */
+}
+
+/* Efecto Hover 3D titulo comunidad*/
+.text-container1:hover .community-title1 {
+    transform: rotateX(10deg) rotateY(10deg) translateZ(20px) scale(1.05); /* Rotación y desplazamiento en 3D */
+    text-shadow: 
+        -2px -2px 0 #a6e70d, 
+        2px -2px 0 #1ba01b,  
+        -2px 2px 0 #55b91b,  
+        2px 2px 0 #000000,
+        5px 5px 15px rgba(0, 0, 0, 0.6); /* Sombra más pronunciada para mayor profundidad */
+}
+
+.text-container1:hover .community-title1::before {
+    transform: translateZ(-5px); /* Pequeño desplazamiento hacia atrás para el efecto 3D */
+    text-shadow: 2px 2px 5px rgba(26, 138, 128, 0.3); /* Sombra interna para el efecto */
+}
+  /* -------------------------------------- */
+/* 1. Estilos para el Contenedor del Logo */
+/* -------------------------------------- */
+.logo-container {
+    /* Color de fondo institucional (verde oscuro) */
+    background-color: #2e7d32; 
+    
+    /* Relleno para dar espacio alrededor del logo */
+    padding: 15px 0; 
+    
+    /* Centrar el contenido horizontalmente */
+    text-align: center;
+    
+    /* Un borde inferior sutil para delimitar la sección (opcional) */
+    border-bottom: 3px solid #f9a825; /* Color amarillo/dorado para contraste */
+}
+
+/* -------------------------------------- */
+/* 2. Estilos para la Imagen GIF (Responsive) */
+/* -------------------------------------- */
+.logo-gif {
+    /* Máximo ancho del 100% del contenedor (esencial para ser responsive) */
+    max-width: 100%;
+    
+    /* Altura automática para mantener la proporción de la imagen */
+    height: auto; 
+    
+    /* Ancho máximo para evitar que sea demasiado grande en pantallas amplias */
+    max-width: 150px; 
+    
+    /* Hace que la imagen sea un bloque para mejor control */
+    display: block; 
+    
+    /* Centrar la imagen dentro del contenedor (alternativa a text-align: center en el padre) */
+    margin: 0 auto; 
+}
+
+/* -------------------------------------- */
+/* 3. Media Query para Móviles (Ajuste si es necesario) */
+/* -------------------------------------- */
+@media (max-width: 600px) {
+    .logo-container {
+        padding: 10px 0; /* Menos relleno en dispositivos pequeños */
+    }
+    
+    .logo-gif {
+        max-width: 120px; /* Tamaño un poco más pequeño en móviles */
+    }
+}
 
 /* ======================================== */
     /* ESTRUCTURA PRINCIPAL DE GRID COMUNIDAD(30%/70%)   */
@@ -849,7 +994,66 @@ footer .socials img:hover {
         margin-bottom: 0.5rem;
         color: var(--muted);
     }
+    /* 🔑 CLAVE 1: Contenedor con ancho máximo y perspectiva dinámica */
+.video-container {
+    /* Define el ancho máximo, por ejemplo, 90% de la pantalla */
+    width: 90vw; 
+    /* El ancho máximo no debe superar un tamaño de escritorio estándar */
+    max-width: 800px; 
+    
+    /* La altura se calculará automáticamente con el padding (ver siguiente bloque) */
+    position: relative;
+    
+    /* Define la profundidad 3D. 1000px es bueno. */
+    perspective: 1000px; 
+    margin: 20px auto; /* Centrar y añadir espacio */
+}
 
+/* 🔑 CLAVE 2: Proporción 16:9 (El truco del padding-top) */
+/* Este bloque mantiene la altura proporcional al ancho (16:9) */
+.video-container::before {
+    content: '';
+    display: block;
+    /* (9 / 16) * 100 = 56.25% */
+    padding-top: 56.25%; /* Esto fuerza la altura para mantener la relación 16:9 */
+}
+
+
+#video3D {
+    /* 🔑 CLAVE 3: Ocupar todo el contenedor relativo */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Propiedades de estilo y 3D */
+    object-fit: cover;
+    border: 5px solid #ecf0f1;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: rotateY(0deg) scale(1); 
+    transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out; 
+    transform-style: preserve-3d;
+}
+
+    /* CLASE CSS (usada por jQuery) */
+    .is-rotated-3d {
+        /* Rotación 3D y ligero aumento de escala */
+        transform: rotateY(15deg) scale(1.05) !important; 
+        box-shadow: 0 40px 80px rgba(46, 204, 113, 0.7) !important; 
+    }
+    /* Media Query (Opcional, para ajustes finos en móviles) */
+    @media (max-width: 600px) {
+    /* Reducimos la perspectiva en pantallas muy pequeñas si el efecto parece exagerado */
+    .video-container {
+        perspective: 800px;
+    }
+    
+    /* Reducimos la rotación y la escala en móviles para evitar recortes */
+    .is-rotated-3d {
+        transform: rotateY(10deg) scale(1.02) !important; 
+    }
+}
     /* ======================================== */
     /* RESPONSIVE: APILAR EN MÓVILES          */
     /* ======================================== */

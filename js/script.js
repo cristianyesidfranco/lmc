@@ -282,6 +282,57 @@ $(function () {
 
     // 📢 Nota: El carrusel que no exista en la página actual será ignorado por el script.
 
+    // Asegúrate de que este script esté después de la inclusión de jQuery
+// o dentro del bloque $(document).ready()
 
+/**
+ * @function iniciarEfectoVideo3D
+ * Aplica los efectos de transformación 3D y sombra a un elemento de video
+ * al pasar el ratón sobre él, utilizando clases CSS predefinidas.
+ * * @param {string} selector El selector jQuery del elemento de video (ej: '#video3D').
+ */
+function iniciarEfectoVideo3D(selector) {
+    
+    // Almacenamos la referencia al elemento jQuery
+    const $video = $(selector);
+    
+    // Verificamos que el elemento exista antes de intentar aplicar los eventos
+    if (!$video.length) {
+        console.warn(`Elemento no encontrado con el selector: ${selector}.`);
+        return;
+    }
+
+    // --- Definición de clases CSS para el efecto (Mejor Práctica) ---
+    // En lugar de usar .css() en jQuery, es más limpio usar clases CSS
+    // Nota: Necesitarás añadir estas clases a tu archivo 'styles.css' (ver sección 3).
+    
+    // Evento al entrar el ratón (mouseenter)
+    $video.on('mouseenter', function() {
+        $(this).addClass('is-rotated-3d');
+    });
+
+    // Evento al salir el ratón (mouseleave)
+    $video.on('mouseleave', function() {
+        $(this).removeClass('is-rotated-3d');
+    });
+
+    // Opcional: Agregar lógica para dispositivos táctiles (clic para activar/desactivar)
+    $video.on('click', function() {
+        $(this).toggleClass('is-rotated-3d');
+    });
+}
+
+
+// ===========================================
+// INICIALIZACIÓN: Llama a la función
+// ===========================================
+
+    $(function() {
+        // Llama a la función para inicializar el efecto en el video con ID="video3D"
+        iniciarEfectoVideo3D('#video3D');
+        
+        // Si tuvieras otro video, podrías llamar a la función de nuevo:
+        // iniciarEfectoVideo3D('#otroVideo'); 
+    });
 
 });
