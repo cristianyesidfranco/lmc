@@ -1135,13 +1135,16 @@ footer .socials img:hover {
     --font-cuerpo: Arial, sans-serif;
 }
 
-.body-fundacion {
+#fundacion {
     background-color: var(--color-principal);
-    color: #333; /* Color de texto estándar */
+   
     line-height: 1.6;
     font-family: var(--font-cuerpo);
     margin: 0;
     padding: 0;
+}
+#fundacion p{
+    color: #444343;
 }
 
 /* 🔑 Contenedor Principal: Responsiveness y Centrado */
