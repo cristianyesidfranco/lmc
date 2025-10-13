@@ -672,6 +672,54 @@ section.section {
     transform: rotateY(15deg) scale(1.05) !important; 
     box-shadow: 0 40px 80px rgba(46, 204, 113, 0.7) !important; 
 }
+/* Estilos del Título Principal */
+.elegant-title {
+    /* 🔑 Tipografía Elegante: Cormorant Garamond */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6vw; /* Tamaño responsive */
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 20px;
+    
+    /* Animación y Transiciones */
+    transition: all 0.5s ease-out; /* Transición tranquila de 0.5 segundos */
+    cursor: pointer;
+    
+    /* 🔑 Degradado de Color (Púrpura, Rosa, Blanco) */
+    background: linear-gradient(
+        135deg,
+        #8e2de2 0%,      /* Púrpura oscuro */
+        #e93f94 50%,      /* Rosa intenso */
+        #ffffff 85%       /* Blanco brillante */
+    );
+    
+    /* Aplicar el degradado solo al texto */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Hace que el texto sea transparente para ver el degradado */
+}
+
+
+/* 🔑 Efecto Hover Sutil y Tranquilo */
+.elegant-title:hover {
+    /* 1. Mueve el degradado (cambia ligeramente los colores visibles) */
+    background: linear-gradient(
+        135deg,
+        #e93f94 10%,      /* Nuevo Rosa más temprano */
+        #ffffff 60%,      /* Blanco más centrado */
+        #8e2de2 100%       /* Púrpura al final */
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /* 2. Sombra de texto suave (Efecto "Brillo Suave") */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), /* Brillo blanco */
+                 0 0 20px rgba(233, 63, 148, 0.3); /* Brillo rosa/púrpura */
+    
+    /* 3. Ligero aumento de escala (Sutileza) */
+    transform: scale(1.03); 
+}
 /* ==================== Footer ==================== */
 footer {
     padding: 1.2rem;
@@ -1068,6 +1116,188 @@ footer .socials img:hover {
     /* Reducimos la rotación y la escala en móviles para evitar recortes */
     .is-rotated-3d {
         transform: rotateY(10deg) scale(1.02) !important; 
+    }
+
+}
+/*
+ * ----------------------------------------------------
+ * ESTILOS GENERALES Y TIPOGRAFÍA DE LA RESEÑA
+ * ----------------------------------------------------
+ */
+
+/* Variables de Color (Recomendado para mantener la coherencia) */
+:root {
+    --color-principal: #1a1a2e; /* Púrpura oscuro para fondo */
+    --color-fondo-claro: #f4f4f9; /* Blanco/Gris claro para el cuerpo del texto */
+    --color-resaltado-rosa: #3fe969;
+    --color-resaltado-purpura: #143810;
+    --font-elegante: 'Cormorant Garamond', serif;
+    --font-cuerpo: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--color-principal);
+    color: #333; /* Color de texto estándar */
+    line-height: 1.6;
+    font-family: var(--font-cuerpo);
+    margin: 0;
+    padding: 0;
+}
+
+/* 🔑 Contenedor Principal: Responsiveness y Centrado */
+.historia-fundacional {
+    max-width: 900px; /* Limita el ancho para una lectura cómoda */
+    width: 95%; /* Ocupa casi todo el ancho en móviles */
+    margin: 40px auto; /* Centra el contenido y añade margen vertical */
+    padding: 20px;
+    background-color: white; /* Fondo blanco para el texto */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* ----------------------------------------------------
+ * ESTILOS DE ENCABEZADOS (Títulos Elegantes)
+ * ----------------------------------------------------
+ */
+
+.historia-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--color-resaltado-rosa);
+}
+
+.titulo-principal {
+    font-family: var(--font-elegante);
+    font-size: clamp(2.5rem, 5vw, 4rem); /* Tamaño fluido y responsive */
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    
+    /* Degradado Púrpura/Rosa */
+    background: linear-gradient(to right, var(--color-resaltado-purpura), var(--color-resaltado-rosa));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitulo {
+    font-family: var(--font-cuerpo);
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    color: var(--color-resaltado-purpura);
+    margin: 0;
+}
+
+/* ----------------------------------------------------
+ * ESTILOS DEL CUERPO DEL TEXTO
+ * ----------------------------------------------------
+ */
+
+.introduccion {
+    font-size: 1.15rem;
+    color: #444;
+    padding: 15px;
+    border-left: 5px solid var(--color-resaltado-rosa);
+    margin-bottom: 30px;
+    background-color: var(--color-fondo-claro);
+}
+
+.contenido-reseña p {
+    margin-bottom: 1.2rem;
+}
+
+/* Estilos de las Etapas (Artículos) */
+.etapa {
+    margin-bottom: 35px;
+    padding: 15px 0;
+}
+
+.etapa h3 {
+    font-family: var(--font-elegante);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-principal);
+    border-bottom: 2px dashed #ddd;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+/* Resaltado de Negritas */
+.contenido-reseña strong {
+    color: var(--color-resaltado-rosa);
+    font-weight: 700;
+}
+
+/* ----------------------------------------------------
+ * ESTILOS DE LISTAS (Hitos y Valores)
+ * ----------------------------------------------------
+ */
+
+.lista-hitos, .lista-valores {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.lista-hitos li, .lista-valores li {
+    padding-left: 2em; /* Espacio para el ícono/viñeta */
+    position: relative;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Iconos de Viñeta Personalizados */
+.lista-hitos li::before {
+    content: '📅'; /* Ícono de calendario para hitos */
+    position: absolute;
+    left: 0;
+    color: var(--color-resaltado-purpura);
+    font-size: 1.1rem;
+}
+
+.lista-valores li::before {
+    content: '✨'; /* Ícono de brillo/estrella para valores */
+    position: absolute;
+    left: 0;
+    color: var(--color-resaltado-rosa);
+    font-size: 1.1rem;
+}
+
+/* ----------------------------------------------------
+ * FOOTER
+ * ----------------------------------------------------
+ */
+
+.historia-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.historia-footer p {
+    font-style: italic;
+    color: #777;
+    font-size: 1rem;
+}
+
+/* ----------------------------------------------------
+ * RESPONSIVE PARA MÓVILES (Menos de 600px)
+ * ----------------------------------------------------
+ */
+
+@media (max-width: 600px) {
+    .historia-fundacional {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    .titulo-principal {
+        font-size: 10vw; /* Asegura que el título no sea demasiado grande */
+    }
+
+    .introduccion {
+        font-size: 1rem;
     }
 }
     /* ======================================== */

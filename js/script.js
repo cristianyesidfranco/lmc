@@ -196,57 +196,87 @@ $(function () {
     });
 
     // Grid de posters (Lógica de generación dinámica)
-    const $postersArea = $('#postersArea');
+    /**
+ * Generates and inserts poster HTML into a specified container.
+ * It also applies the 'full' class based on the images included in the initial set,
+ * which you might want to adjust or pass as an argument for true reusability.
+ *
+ * @param {string} containerSelector The jQuery selector (e.g., '#postersArea', '#postersArea1') for the container.
+ * @param {string[]} imagePaths An array of image source paths (e.g., ["img/path1.png", "img/path2.jpeg"]).
+ */
+    function generatePostersArea(containerSelector, imagePaths) {
+        const $postersArea = $(containerSelector);
 
-    if ($postersArea.length) {
-        // Array con diferentes imágenes para posters
-        const imagenes = [
-            "img/posters/folleto1.png", "img/posters/folleto2.png", "img/posters/reingenieria_pedagogica.jpeg",
-            "img/posters/matriculas_abiertas.png", "img/posters/cambio_agentes_educativos.jpeg", "img/posters/proyectos.png",
-            "img/posters/rectoraAdmisiones.png", "img/posters/costos2026.png", "img/posters/admisiones2026.png",
-        ];
+        // Only proceed if the container element exists on the page
+        if ($postersArea.length && Array.isArray(imagePaths) && imagePaths.length > 0) {
+            // Define which images should get the 'full' class. 
+            // NOTE: For maximum reusability, you might want to pass this list 
+            // or a condition as an argument instead of hardcoding it.
+            const fullImageIdentifiers = [
+                "admisiones2026", "folleto1", "folleto2",
+                "reingenieria_pedagogica", "matriculas_abiertas", "cambio_agentes_educativos","grafiti_de_la_virgen"
+            ];
 
-        // Generamos los posters dinámicamente
-        // Nota: Cada poster es un DIV con la clase .poster (requerido para el carrusel en este caso)
-        const postersHTML = imagenes.map((src, i) => {
-            const isFull = src.includes("admisiones2026") || src.includes("folleto1") || src.includes("folleto2") || src.includes("reingenieria_pedagogica") || src.includes("matriculas_abiertas") || src.includes("cambio_agentes_educativos");
-            // Se usa 'poster-slide' para que no interfiera con otros usos de la clase .poster en el carrusel principal si se decide usar solo para el grid.
-            return `<div class="poster poster-slide ${isFull ? "full" : ""}"><a href="#"><img src="${src}" alt="Poster ${i + 1}"></a></div>`;
-        }).join("");
+            // Generate the poster HTML dynamically
+            const postersHTML = imagePaths.map((src, i) => {
+                // Check if the current src contains any of the 'full' identifiers
+                const isFull = fullImageIdentifiers.some(identifier => src.includes(identifier));
 
-        // Insertamos en el contenedor (que actúa como grid estático o como un segundo carrusel si se configura el HTML)
-        $postersArea.html(postersHTML);
-    }
-    // Grid de posters 1 (Lógica de generación dinámica)
-    const $postersArea1 = $('#postersArea1');
+                // Each poster is a DIV with classes .poster and .poster-slide
+                return `<div class="poster poster-slide ${isFull ? "full" : ""}"><a href="#"><img src="${src}" alt="Poster ${i + 1}"></a></div>`;
+            }).join("");
 
-    if ($postersArea1.length) {
-        // Array con diferentes imágenes para posters
-        const imagenes = [
-            "img/posters/folleto1.png", "img/posters/folleto2.png", "img/posters/reingenieria_pedagogica.jpeg",
-            "img/posters/admisiones2026.png",
-        ];
-
-        // Generamos los posters dinámicamente
-        // Nota: Cada poster es un DIV con la clase .poster (requerido para el carrusel en este caso)
-        const postersHTML = imagenes.map((src, i) => {
-            const isFull = src.includes("admisiones2026") || src.includes("folleto1") || src.includes("folleto2") || src.includes("reingenieria_pedagogica") || src.includes("matriculas_abiertas") || src.includes("cambio_agentes_educativos");
-            // Se usa 'poster-slide' para que no interfiera con otros usos de la clase .poster en el carrusel principal si se decide usar solo para el grid.
-            return `<div class="poster poster-slide ${isFull ? "full" : ""}"><a href="#"><img src="${src}" alt="Poster ${i + 1}"></a></div>`;
-        }).join("");
-
-        // Insertamos en el contenedor (que actúa como grid estático o como un segundo carrusel si se configura el HTML)
-        $postersArea1.html(postersHTML);
-    }
-    // Animaciones de rebote
-    $(".card").hover(
-        function () {
-            $(this).css({ "transform": "scale(1.05)", "box-shadow": "0 0 15px rgba(43, 255, 0, 1), 0 0 25px rgba(0, 255, 64, 1)" });
-        },
-        function () {
-            $(this).css({ "transform": "scale(1)", "box-shadow": "0 4px 8px rgba(0,0,0,0.2)" });
+            // Insert the generated HTML into the container
+            $postersArea.html(postersHTML);
+        } else if ($postersArea.length && imagePaths.length === 0) {
+            console.warn(`Poster generation skipped for ${containerSelector}: No image paths provided.`);
         }
-    );
+    }
+
+    // --- Usage Examples ---
+
+    // 1. Posters Area with the original, larger set of images
+    const posters1 = [
+        "img/posters/folleto1.png", "img/posters/folleto2.png", "img/posters/reingenieria_pedagogica.jpeg",
+        "img/posters/matriculas_abiertas.png", "img/posters/cambio_agentes_educativos.jpeg", "img/posters/proyectos.png",
+        "img/posters/rectoraAdmisiones.png", "img/posters/costos2026.png", "img/posters/admisiones2026.png",
+    ];
+    generatePostersArea('#postersArea', posters1);
+
+    // 2. Posters Area 1 with the smaller, different set of images
+    const posters2 = [
+        
+        "img/posters/grafiti_de_la_virgen.png",
+    ]
+    generatePostersArea('#postersArea1', posters2);
+
+    // 3. Reusable Hover Animation Logic (can stay outside or be its own function)
+    function setupCardHoverAnimation() {
+        $(".card").hover(
+            function () {
+                $(this).css({
+                    "transform": "scale(1.05)",
+                    "box-shadow": "0 0 15px rgba(43, 255, 0, 1), 0 0 25px rgba(0, 255, 64, 1)"
+                });
+            },
+            function () {
+                $(this).css({
+                    "transform": "scale(1)",
+                    "box-shadow": "0 4px 8px rgba(0,0,0,0.2)"
+                });
+            }
+        );
+    }
+
+    // Call the animation setup function when the DOM is ready
+    $(document).ready(function () {
+        setupCardHoverAnimation();
+
+        // You would call your poster generation functions here as well
+        // generatePostersArea('#postersArea', posters1); 
+        // generatePostersArea('#postersArea1', posters2); 
+        // ... or any other area on a different page
+    });
 
     // Back to top visibility & click
     $(window).on('scroll', function () {
@@ -283,54 +313,54 @@ $(function () {
     // 📢 Nota: El carrusel que no exista en la página actual será ignorado por el script.
 
     // Asegúrate de que este script esté después de la inclusión de jQuery
-// o dentro del bloque $(document).ready()
+    // o dentro del bloque $(document).ready()
 
-/**
- * @function iniciarEfectoVideo3D
- * Aplica los efectos de transformación 3D y sombra a un elemento de video
- * al pasar el ratón sobre él, utilizando clases CSS predefinidas.
- * * @param {string} selector El selector jQuery del elemento de video (ej: '#video3D').
- */
-function iniciarEfectoVideo3D(selector) {
-    
-    // Almacenamos la referencia al elemento jQuery
-    const $video = $(selector);
-    
-    // Verificamos que el elemento exista antes de intentar aplicar los eventos
-    if (!$video.length) {
-        console.warn(`Elemento no encontrado con el selector: ${selector}.`);
-        return;
+    /**
+     * @function iniciarEfectoVideo3D
+     * Aplica los efectos de transformación 3D y sombra a un elemento de video
+     * al pasar el ratón sobre él, utilizando clases CSS predefinidas.
+     * * @param {string} selector El selector jQuery del elemento de video (ej: '#video3D').
+     */
+    function iniciarEfectoVideo3D(selector) {
+
+        // Almacenamos la referencia al elemento jQuery
+        const $video = $(selector);
+
+        // Verificamos que el elemento exista antes de intentar aplicar los eventos
+        if (!$video.length) {
+            console.warn(`Elemento no encontrado con el selector: ${selector}.`);
+            return;
+        }
+
+        // --- Definición de clases CSS para el efecto (Mejor Práctica) ---
+        // En lugar de usar .css() en jQuery, es más limpio usar clases CSS
+        // Nota: Necesitarás añadir estas clases a tu archivo 'styles.css' (ver sección 3).
+
+        // Evento al entrar el ratón (mouseenter)
+        $video.on('mouseenter', function () {
+            $(this).addClass('is-rotated-3d');
+        });
+
+        // Evento al salir el ratón (mouseleave)
+        $video.on('mouseleave', function () {
+            $(this).removeClass('is-rotated-3d');
+        });
+
+        // Opcional: Agregar lógica para dispositivos táctiles (clic para activar/desactivar)
+        $video.on('click', function () {
+            $(this).toggleClass('is-rotated-3d');
+        });
     }
 
-    // --- Definición de clases CSS para el efecto (Mejor Práctica) ---
-    // En lugar de usar .css() en jQuery, es más limpio usar clases CSS
-    // Nota: Necesitarás añadir estas clases a tu archivo 'styles.css' (ver sección 3).
-    
-    // Evento al entrar el ratón (mouseenter)
-    $video.on('mouseenter', function() {
-        $(this).addClass('is-rotated-3d');
-    });
 
-    // Evento al salir el ratón (mouseleave)
-    $video.on('mouseleave', function() {
-        $(this).removeClass('is-rotated-3d');
-    });
+    // ===========================================
+    // INICIALIZACIÓN: Llama a la función
+    // ===========================================
 
-    // Opcional: Agregar lógica para dispositivos táctiles (clic para activar/desactivar)
-    $video.on('click', function() {
-        $(this).toggleClass('is-rotated-3d');
-    });
-}
-
-
-// ===========================================
-// INICIALIZACIÓN: Llama a la función
-// ===========================================
-
-    $(function() {
+    $(function () {
         // Llama a la función para inicializar el efecto en el video con ID="video3D"
         iniciarEfectoVideo3D('#video3D');
-        
+
         // Si tuvieras otro video, podrías llamar a la función de nuevo:
         // iniciarEfectoVideo3D('#otroVideo'); 
     });
