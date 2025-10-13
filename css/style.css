@@ -1286,18 +1286,32 @@ body {
  * ----------------------------------------------------
  */
 
+/*
+ * MEDIA QUERY para asegurar apilamiento en pantallas pequeñas (Móviles)
+ * Menos de 600px de ancho.
+ */
 @media (max-width: 600px) {
-    .historia-fundacional {
-        padding: 15px;
-        margin: 20px auto;
+    
+    /* * Aseguramos que el contenedor use display: block o flex-direction: column 
+     * (aunque display: block suele ser suficiente para h1/h2) 
+     */
+    .historia-header {
+        /*
+         * Si el .historia-header tuviera display: flex en el CSS general 
+         * y los elementos se alinearan horizontalmente, esta línea los obliga a apilarse:
+         */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra el texto */
     }
-
+    
+    /* Opcional: Ajuste del margen para que no queden pegados */
     .titulo-principal {
-        font-size: 10vw; /* Asegura que el título no sea demasiado grande */
+        margin-bottom: 5px; /* Reduce el espacio entre el h1 y el h2 en móvil */
     }
 
-    .introduccion {
-        font-size: 1rem;
+    .subtitulo {
+        margin-top: 5px;
     }
 }
     /* ======================================== */
