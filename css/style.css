@@ -9,7 +9,7 @@
     --neon: rgba(0, 240, 255, 0.12);
     --glass: rgba(255, 255, 255, 0.03);
     --glass-2: rgba(255, 255, 255, 0.02);
-    --muted: #9fb3bd;
+    --muted: #dee5e9;
     --max-w: 1200px;
 }
 
@@ -1127,7 +1127,7 @@ footer .socials img:hover {
 
 /* Variables de Color (Recomendado para mantener la coherencia) */
 :root {
-    --color-principal: #1a1a2e; /* Púrpura oscuro para fondo */
+    --color-principal: #d0d0d4; /* Púrpura oscuro para fondo */
     --color-fondo-claro: #f4f4f9; /* Blanco/Gris claro para el cuerpo del texto */
     --color-resaltado-rosa: #3fe969;
     --color-resaltado-purpura: #143810;
@@ -1135,7 +1135,7 @@ footer .socials img:hover {
     --font-cuerpo: Arial, sans-serif;
 }
 
-body {
+.body-fundacion {
     background-color: var(--color-principal);
     color: #333; /* Color de texto estándar */
     line-height: 1.6;

@@ -238,7 +238,7 @@ $(function () {
     // 1. Posters Area with the original, larger set of images
     const posters1 = [
         "img/posters/folleto1.png", "img/posters/folleto2.png", "img/posters/reingenieria_pedagogica.jpeg",
-        "img/posters/matriculas_abiertas.png", "img/posters/cambio_agentes_educativos.jpeg", "img/posters/proyectos.png",
+        "img/posters/matriculas_abiertas.png", "img/posters/cambio_agentes_educativos.jpeg","img/posters/welcomeStudents.png", "img/posters/proyectos.png",
         "img/posters/rectoraAdmisiones.png", "img/posters/costos2026.png", "img/posters/admisiones2026.png",
     ];
     generatePostersArea('#postersArea', posters1);
