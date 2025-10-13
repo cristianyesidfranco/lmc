@@ -214,7 +214,7 @@ $(function () {
             // or a condition as an argument instead of hardcoding it.
             const fullImageIdentifiers = [
                 "admisiones2026", "folleto1", "folleto2",
-                "reingenieria_pedagogica", "matriculas_abiertas", "cambio_agentes_educativos","grafiti_de_la_virgen"
+                "reingenieria_pedagogica", "matriculas_abiertas", "cambio_agentes_educativos","virgen_de_fatima.png"
             ];
 
             // Generate the poster HTML dynamically
@@ -246,7 +246,7 @@ $(function () {
     // 2. Posters Area 1 with the smaller, different set of images
     const posters2 = [
         
-        "img/posters/grafiti_de_la_virgen.png",
+        "img/virgen_de_fatima.png",
     ]
     generatePostersArea('#postersArea1', posters2);
 
