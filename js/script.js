@@ -233,7 +233,7 @@ $(function () {
         }
     }
 
-    // --- Usage Examples ---
+    // --- Usage Examples --- 
 
     // 1. Posters Area with the original, larger set of images
     const posters1 = [
@@ -249,7 +249,12 @@ $(function () {
         "img/virgen_de_fatima.png",
     ]
     generatePostersArea('#postersArea1', posters2);
-
+     // 3. Posters Area 1 with the smaller, different set of images
+    const posters3 = [
+        
+        "img/posters/folleto2.png",
+    ]
+    generatePostersArea('#postersArea1', posters3);
     // 3. Reusable Hover Animation Logic (can stay outside or be its own function)
     function setupCardHoverAnimation() {
         $(".card").hover(

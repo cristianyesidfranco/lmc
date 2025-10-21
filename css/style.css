@@ -1283,6 +1283,121 @@ footer .socials img:hover {
     color: #777;
     font-size: 1rem;
 }
+/* ----------------------------------------------------
+ * ESTILOS DE ENCABEZADOS
+ * ----------------------------------------------------
+ */
+
+.titulo-equipo {
+    font-family: var(--font-elegante);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    text-align: center;
+    color: var(--color-principal);
+    margin-bottom: 5px;
+}
+
+.descripcion-equipo {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--color-fondo-claro);
+}
+
+.subtitulo-miembros, .subtitulo-funciones {
+    font-family: var(--font-cuerpo);
+    font-size: 1.5rem;
+    color: var(--color-resaltado-purpura);
+    border-left: 5px solid var(--color-resaltado-rosa);
+    padding-left: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* ----------------------------------------------------
+ * 1. MIEMBROS DEL EQUIPO (Lista de Definición)
+ * ----------------------------------------------------
+ */
+
+.lista-cargos {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los ítems se apilen en pantallas pequeñas */
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.cargo-item {
+    flex: 1 1 45%; /* Permite 2 ítems por fila en escritorio */
+    display: flex;
+    padding: 15px;
+    border: 1px solid var(--color-fondo-claro);
+    border-radius: 8px;
+    background-color: var(--color-fondo-claro);
+    align-items: center;
+}
+
+.cargo-item dt {
+    font-weight: 700;
+    color: var(--color-principal);
+    margin-right: 10px;
+}
+
+.cargo-item dd {
+    margin-left: 0;
+    color: #444;
+}
+
+/* ----------------------------------------------------
+ * 2. FUNCIONES Y OBJETIVOS (Lista no Ordenada)
+ * ----------------------------------------------------
+ */
+
+.lista-objetivos {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-objetivos li {
+    padding-left: 1.5em;
+    position: relative;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Ícono de viñeta personalizado (check/punto de color) */
+.lista-objetivos li::before {
+    content: '✅'; /* Un check verde como símbolo de objetivo cumplido */
+    position: absolute;
+    left: 0;
+    color: var(--color-resaltado-rosa); /* Usa el color rosa para el ícono */
+    font-size: 1.1em;
+}
+
+/* Resaltar texto importante dentro de los objetivos */
+.lista-objetivos li strong {
+    color: var(--color-resaltado-purpura);
+    font-weight: 600;
+}
+
+
+/* ----------------------------------------------------
+ * RESPONSIVE (Móviles)
+ * ----------------------------------------------------
+ */
+
+@media (max-width: 768px) {
+    .equipo-institucional {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+    /* En móvil, los miembros del equipo ocupan todo el ancho (se apilan) */
+    .cargo-item {
+        flex: 1 1 100%; 
+    }
+}
 
 /* ----------------------------------------------------
  * RESPONSIVE PARA MÓVILES (Menos de 600px)
