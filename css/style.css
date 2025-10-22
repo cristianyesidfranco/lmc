@@ -386,10 +386,10 @@ section.section {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#postersArea .poster img:hover {
+/* #postersArea .poster img:hover {
     opacity: 0.7;
     transform: scale(1.05);
-}
+} */
 
 #postersArea .poster.full {
     grid-column: 1 / span 4;
