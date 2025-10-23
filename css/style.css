@@ -1540,43 +1540,52 @@ footer .socials img:hover {
 }
 
 
-/* ------------------------------------------- */
-/* MEDIA QUERY: LAYOUT DE MAPA SÓLO PARA ESCRITORIO/TABLET GRANDE (>= 768px) */
-/* ------------------------------------------- */
-@media (min-width: 768px) {
+@media (min-width: 414px) {
     
     .mapa-conceptual {
-        /* Restablecer el layout de mapa (Aspect ratio) */
-        padding-top: 70%; 
+        /* [AJUSTE SUGERIDO]: Cambiar padding-top a 100% para un aspecto más cuadrado 
+           en pantallas de celular/tablet (414px es aún bastante estrecho). */
+        padding-top: 100%; 
         height: 0;
-        display: block; /* Volver a usar el display por defecto para posicionamiento absoluto */
-        min-height: 400px;
+        display: block; 
+        /* [AJUSTE SUGERIDO]: min-height más bajo para móvil/tablet si el contenedor es estrecho */
+        min-height: 450px; 
     }
 
     .nodo {
-        position: absolute; /* Habilitar posicionamiento absoluto */
-        margin: 0; /* Eliminar el margen de apilamiento */
-        order: initial; /* Restaurar el orden normal */
+        position: absolute; 
+        margin: 0; 
+        order: initial; 
     }
 
-    /* Redefinir tamaños para desktop */
+    /* Estilos del Nodo Central */
     .central {
-        width: 25%; 
-        height: 15%; 
+        /* [AJUSTE SUGERIDO]: Aumentar el tamaño para que sea visible en 414px */
+        width: 35%; 
+        height: 18%; 
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: clamp(1.4rem, 2.5vw, 1.8rem); 
+        /* Se mantiene el clamp() para la escalabilidad del nodo principal */
+        font-size: clamp(1.2rem, 4vw, 1.8rem); 
     }
     
+    /* Estilos de Nodos Externos */
     .nodo:not(.central) {
-        width: 16%; 
-        height: 10%;
-        font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        /* [AJUSTE SUGERIDO]: Nodos más anchos para que quepa el texto en 414px */
+        width: 20%; 
+        height: 12%;
+        
+        /* 🚨 CORRECCIÓN CLAVE: 
+           Reemplazar 0.75rem por clamp(). 0.75rem (~12px) es demasiado pequeño e ilegible. 
+        */
+        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
     }
 
-    /* Posicionamiento del mapa (Desktop/Tablet) */
-    /* Fila Superior (Top: 5%) */
+    /* Posicionamiento del mapa (Ajustado para 414px) */
+    /* Las posiciones están bien, pero aquí se incluyen para completar el bloque */
+    
+    /* Fila Superior */
     .superior-izq { top: 5%; left: 5%; }
     .superior-centro1 { top: 5%; left: 28%; }
     .superior-centro2 { top: 5%; right: 28%; }
@@ -1592,7 +1601,7 @@ footer .socials img:hover {
     .inferior-centro2 { bottom: 5%; right: 28%; }
     .inferior-der { bottom: 5%; right: 5%; }
 }
-/* ====================================================================== */
+/*====================================================================== */
 /* 🛠️ CSS DE LA CAJA DE DESCRIPCIÓN (MODAL/TOGGLE BOX) */
 /* ====================================================================== */
 
