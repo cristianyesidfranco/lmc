@@ -369,5 +369,57 @@ $(function () {
         // Si tuvieras otro video, podrías llamar a la función de nuevo:
         // iniciarEfectoVideo3D('#otroVideo'); 
     });
+    function inicializarMapaConceptual() {
+    // 1. Mapeo de Descripciones (Usado como fallback si no hay data-attributes)
+    // NOTA: Es buena práctica mantener la fuente de datos fuera de la lógica principal.
+    const descripciones = {
+        'central': 'Este es el NÚCLEO del proyecto, la idea principal que une a todos los elementos del mapa conceptual. Representa la misión y visión del sistema.',
+        'superior-izq': 'Componente de **Análisis del Entorno**: Explora las tendencias, amenazas y oportunidades externas que afectan al proyecto. Es la primera fase de planificación.',
+        'superior-centro1': 'Componente de **Definición de Objetivos**: Establece las metas SMART (Específicas, Medibles, Alcanzables, Relevantes, Temporales) del proyecto.',
+        'superior-centro2': 'Componente de **Planificación de Recursos**: Determina los activos humanos, financieros y tecnológicos necesarios para la ejecución del proyecto.',
+        'superior-der': 'Componente de **Diseño y Estructura**: Define la arquitectura y el diseño del sistema o producto, asegurando una base sólida y escalable.',
+        'medio-izq': 'Componente de **Ejecución y Despliegue**: Pone en marcha las acciones planificadas. Es la fase donde la teoría se convierte en práctica.',
+        'medio-der': 'Componente de **Monitoreo y Control**: Sigue el progreso, mide el desempeño contra los objetivos y aplica correcciones cuando es necesario.',
+        'inferior-izq': 'Componente de **Evaluación de Resultados**: Mide el impacto final del proyecto y compara los logros con los objetivos iniciales definidos.',
+        'inferior-centro1': 'Componente de **Retroalimentación y Aprendizaje**: Recopila lecciones aprendidas para mejorar futuros proyectos e iteraciones del mapa.',
+        'inferior-centro2': 'Componente de **Ajuste Estratégico**: Modifica la estrategia central con base en la retroalimentación y los nuevos aprendizajes adquiridos.',
+        'inferior-der': 'Componente de **Cierre y Documentación**: Finaliza formalmente el proyecto, archiva documentación clave y celebra los éxitos obtenidos.'
+    };
 
+    // 2. FUNCIÓN DE ABRIR DESCRIPCIÓN al hacer clic en cualquier nodo
+    $('.nodo').on('click', function() {
+        // Obtenemos la segunda clase (la de posicionamiento, ej: 'central', 'superior-izq')
+        // Usamos una expresión regular para una extracción más limpia de la clase de posición
+        const claseNodo = ($(this).attr('class').match(/(central|superior-\w+|medio-\w+|inferior-\w+)/) || [])[0];
+        
+        // Obtener el contenido, priorizando los 'data-attributes' del HTML (más flexible)
+        let titulo = $(this).data('titulo') || `Título de ${claseNodo}`;
+        let contenido = $(this).data('contenido') || descripciones[claseNodo] || 'Descripción no disponible.';
+
+        // Llenar la caja modal
+        $('#descripcion-titulo').html(titulo); // Usar .html() para permitir negritas del fallback
+        $('#descripcion-contenido').html(contenido); // Usar .html() para permitir negritas del fallback
+
+        // Mostrar la caja modal
+        $('.descripcion-overlay').fadeIn(300);
+    });
+
+    // 3. FUNCIÓN DE CERRAR DESCRIPCIÓN (al hacer clic en el botón o en el fondo)
+    $('.cerrar-btn, .descripcion-overlay').on('click', function(e) {
+        // Solo cerrar si el clic es en el botón o directamente en el fondo oscuro
+        if ($(e.target).is('.cerrar-btn') || $(e.target).is('.descripcion-overlay')) {
+            $('.descripcion-overlay').fadeOut(300);
+        }
+    });
+
+    // 4. PREVENIR EL CIERRE AL HACER CLIC DENTRO DEL CONTENIDO DE LA CAJA
+    $('.descripcion-box').on('click', function(e) {
+        e.stopPropagation(); // Detiene el evento para que no llegue al overlay (al fondo)
+    });
+}
+
+// Llama a la función de inicialización cuando el documento esté completamente cargado.
+$(document).ready(function() {
+    inicializarMapaConceptual();
+});
 });

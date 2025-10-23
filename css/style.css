@@ -386,10 +386,10 @@ section.section {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-#postersArea .poster img:hover {
+/* #postersArea .poster img:hover {
     opacity: 0.7;
     transform: scale(1.05);
-}
+} */
 
 #postersArea .poster.full {
     grid-column: 1 / span 4;
@@ -1367,20 +1367,63 @@ footer .socials img:hover {
 }
 
 /* Ícono de viñeta personalizado (check/punto de color) */
-.lista-objetivos li::before {
+.lista-objetivos .liGd::before {
     content: '✅'; /* Un check verde como símbolo de objetivo cumplido */
     position: absolute;
     left: 0;
     color: var(--color-resaltado-rosa); /* Usa el color rosa para el ícono */
     font-size: 1.1em;
 }
+/*lista propuesta pedagogica*/
 
+.lista-objetivos .liPp::before {
+    content: '🏆'; 
+    position: absolute;
+    left: 0;
+    color: var(--color-resaltado-rosa); 
+    font-size: 1.1em;
+}
+.lista-objetivos li::before {
+    content: '■'; 
+    position: absolute;
+    left: 0;
+    /* Ajustamos el color del icono a negro o gris oscuro para el minimalismo */
+    color: #333; 
+    font-size: 0.8em; /* Un tamaño más pequeño y discreto */
+}
 /* Resaltar texto importante dentro de los objetivos */
 .lista-objetivos li strong {
     color: var(--color-resaltado-purpura);
     font-weight: 600;
 }
-
+/* ----------------------------------------------------
+ * ESTILOS DE PROPUESTA PEGAGOGICA
+ * ----------------------------------------------------
+ */
+.propuestaPedagogica{
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--color-resaltado-rosa);
+} 
+.propuestaPedagogica img{
+     width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.funciones-equipo{
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--color-resaltado-rosa);
+} 
+.funciones-equipo img{
+     width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
 /* ----------------------------------------------------
  * RESPONSIVE (Móviles)
@@ -1398,7 +1441,232 @@ footer .socials img:hover {
         flex: 1 1 100%; 
     }
 }
+/* ====================================================================== */
+/* 🔑 MAPA CONCEPTUAL - REFACTORIZACIÓN UI/UX Y RESPONSIVIDAD */
+/* (Añadir a la parte final de tu archivo CSS) */
+/* ====================================================================== */
 
+.mapa-conceptual {
+    position: relative;
+    /* Usar un ancho máximo fijo para limitar el contenedor en escritorio */
+    width: 100%; 
+    max-width: 900px;
+    
+    /* [RESPONSIVE FIX] Por defecto (móvil), se usa un layout tipo columna/stack */
+    padding-top: 0;
+    height: auto;
+    min-height: 80vh; /* Altura mínima grande para el stack vertical en móvil */
+    margin: 20px auto; /* Centrar el mapa */
+    
+    /* Usar Flexbox para el apilamiento Mobile-First */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenedor Flex para asegurar que el contenido del nodo se centre */
+.nodo {
+    position: static; /* Por defecto, NO absoluto en móvil */
+    margin: 10px auto; /* Margen para apilamiento en móvil */
+    
+    /* [UX/RESPONSIVE FIX] Padding fijo con rem, no con vw, para evitar desbordes */
+    padding: 0.8rem 1.2rem; 
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    
+    /* [UX/LEGIBILIDAD FIX] Usar clamp() para un tamaño de fuente responsivo y controlado */
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem); 
+    line-height: 1.2;
+}
+
+/* ------------------------------------------- */
+/* ESTILO Y POSICIONAMIENTO DEL NODO CENTRAL (MOBILE-FIRST) */
+/* ------------------------------------------- */
+
+.central {
+    background-color: #5b9bd5; 
+    width: 90%; 
+    height: auto; 
+    min-height: 10%; 
+    font-size: clamp(1.2rem, 4vw, 1.8rem); 
+    
+    /* Posición estática en el flujo normal de la columna flex */
+    position: static;
+    transform: none;
+    order: 0; /* El central va primero */
+    margin-bottom: 20px;
+    z-index: 10;
+}
+
+/* Estilo general para los nodos externos (verde oscuro) */
+.nodo:not(.central) {
+    background-color: #38761d; 
+    width: 90%; /* Ocupa casi todo el ancho disponible en móvil */
+    min-height: 8%;
+    font-size: clamp(0.8rem, 2vw, 1.1rem); 
+    padding: 0.8rem;
+    order: 1; /* El resto de nodos va después del central */
+}
+
+/* Posiciones específicas para los nodos externos se vuelven irrelevantes en Mobile-First */
+/* Se eliminan las clases .superior-izq, .inferior-der, etc. de las reglas estáticas */
+
+
+/* ------------------------------------------- */
+/* EFECTOS HOVER (Se mantienen) */
+/* ------------------------------------------- */
+
+.nodo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.central:hover {
+    background-color: #79aede;
+}
+
+.nodo:not(.central):hover {
+    background-color: #6aa84f;
+}
+
+
+/* ------------------------------------------- */
+/* MEDIA QUERY: LAYOUT DE MAPA SÓLO PARA ESCRITORIO/TABLET GRANDE (>= 768px) */
+/* ------------------------------------------- */
+@media (min-width: 768px) {
+    
+    .mapa-conceptual {
+        /* Restablecer el layout de mapa (Aspect ratio) */
+        padding-top: 70%; 
+        height: 0;
+        display: block; /* Volver a usar el display por defecto para posicionamiento absoluto */
+        min-height: 400px;
+    }
+
+    .nodo {
+        position: absolute; /* Habilitar posicionamiento absoluto */
+        margin: 0; /* Eliminar el margen de apilamiento */
+        order: initial; /* Restaurar el orden normal */
+    }
+
+    /* Redefinir tamaños para desktop */
+    .central {
+        width: 25%; 
+        height: 15%; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: clamp(1.4rem, 2.5vw, 1.8rem); 
+    }
+    
+    .nodo:not(.central) {
+        width: 16%; 
+        height: 10%;
+        font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    }
+
+    /* Posicionamiento del mapa (Desktop/Tablet) */
+    /* Fila Superior (Top: 5%) */
+    .superior-izq { top: 5%; left: 5%; }
+    .superior-centro1 { top: 5%; left: 28%; }
+    .superior-centro2 { top: 5%; right: 28%; }
+    .superior-der { top: 5%; right: 5%; }
+
+    /* Fila Media (Centrado verticalmente) */
+    .medio-izq { top: 45%; left: 0; transform: translateY(-50%); }
+    .medio-der { top: 45%; right: 0; transform: translateY(-50%); }
+
+    /* Fila Inferior (Bottom: 5%) */
+    .inferior-izq { bottom: 5%; left: 5%; }
+    .inferior-centro1 { bottom: 5%; left: 28%; }
+    .inferior-centro2 { bottom: 5%; right: 28%; }
+    .inferior-der { bottom: 5%; right: 5%; }
+}
+/* ====================================================================== */
+/* 🛠️ CSS DE LA CAJA DE DESCRIPCIÓN (MODAL/TOGGLE BOX) */
+/* ====================================================================== */
+
+/* Capa de fondo que cubre toda la pantalla (Modal) */
+.descripcion-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Asegurar que esté por encima de todo */
+    backdrop-filter: blur(5px);
+}
+
+/* Caja de contenido responsiva */
+.descripcion-box {
+    background: #0b1a24; /* Color de tarjeta del tema oscuro */
+    color: #e6f7fb;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.4); /* Sombra neón */
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    border: 2px solid #00ff0d; /* Borde de acento */
+    animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.descripcion-box h3 {
+    color: #00ff0d; /* Título neón */
+    margin-top: 0;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.descripcion-box p {
+    color: #dee5e9;
+    line-height: 1.6;
+}
+
+/* Botón de cerrar */
+.cerrar-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c; /* Rojo para cerrar */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.cerrar-btn:hover {
+    background: #c0392b;
+}
 /* ----------------------------------------------------
  * RESPONSIVE PARA MÓVILES (Menos de 600px)
  * ----------------------------------------------------
