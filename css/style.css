@@ -33,7 +33,10 @@ a {
     color: inherit;
     text-decoration: none;
 }
-
+p {
+    /* Aplica a todos los elementos <p> */
+    text-align: left;
+}
 /* Global Container */
 .container {
     max-width: var(--max-w);
