@@ -331,8 +331,8 @@ section.section {
 }
 
 .card {
-    background: #79967a;
-    color: rgb(16, 82, 20);
+    background: transparent;
+    color: #e6f7fb;;
     border-radius: 70px;
     padding: 20px;
     text-align: center;
@@ -1179,7 +1179,7 @@ footer .socials img:hover {
     font-weight: 700;
     margin: 0 0 10px 0;
     
-    /* Degradado Púrpura/Rosa */
+    text-align: center;
     background: linear-gradient(to right, var(--color-resaltado-purpura), var(--color-resaltado-rosa));
     -webkit-background-clip: text;
     background-clip: text;
@@ -1312,7 +1312,7 @@ footer .socials img:hover {
 .subtitulo-miembros, .subtitulo-funciones {
     font-family: var(--font-cuerpo);
     font-size: 1.5rem;
-    color: var(--color-resaltado-purpura);
+    color: linear-gradient(180deg, var(--bg), #087736);
     border-left: 5px solid var(--color-resaltado-rosa);
     padding-left: 10px;
     margin-top: 30px;
@@ -1367,7 +1367,7 @@ footer .socials img:hover {
     padding-left: 1.5em;
     position: relative;
     margin-bottom: 15px;
-    color: #555;
+    color: #fcfbfb;
 }
 
 /* Ícono de viñeta personalizado (check/punto de color) */
@@ -1417,7 +1417,7 @@ footer .socials img:hover {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .funciones-equipo{
-    text-align: center;
+    
     margin-bottom: 40px;
     padding-bottom: 20px;
     border-bottom: 3px solid var(--color-resaltado-rosa);
