@@ -1147,7 +1147,7 @@ footer .socials img:hover {
     padding: 0;
 }
 #fundacion p{
-    color: #444343;
+    color: #fcf9f9;
 }
 
 /* 🔑 Contenedor Principal: Responsiveness y Centrado */
@@ -1156,7 +1156,7 @@ footer .socials img:hover {
     width: 95%; /* Ocupa casi todo el ancho en móviles */
     margin: 40px auto; /* Centra el contenido y añade margen vertical */
     padding: 20px;
-    background-color: white; /* Fondo blanco para el texto */
+    background: transparent ; /* Fondo blanco para el texto */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
@@ -1201,11 +1201,12 @@ footer .socials img:hover {
 
 .introduccion {
     font-size: 1.15rem;
-    color: #444;
+    color: #fcfafa;
     padding: 15px;
     border-left: 5px solid var(--color-resaltado-rosa);
     margin-bottom: 30px;
     background-color: var(--color-fondo-claro);
+    background: transparent;
 }
 
 .contenido-reseña p {
