@@ -1,43 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Liceo Mixto Los Centauros - Reseña - historica</title>
-    <meta name="description" content="Sitio demo responsive con menú toggle, carruseles y secciones informativas">
-    <link rel="icon" type="image/png" href="img/logoLMC.png">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- jQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liceo Mixto los Centauros - Folleto con Carrusel</title>
+    <link rel="stylesheet" href="css/styleFolleto.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <!-- HEADER -->
+
     <header class="container">
         <div class="brand">
             <div class="home-3d" id="homeIcon" title="Ir a inicio">
                 <div class="cube">
                     <div class="face top"></div>
-                    <div class="face front"><img src="img/logo_icon_transparent.ico" alt=""></div>
+                    <div class="face front"><img src="img/logo_icon_transparent.ico" alt="Logo LMC"></div>
                     <div class="face right">LMC</div>
                 </div>
                 <div class="home-cloud" id="homeCloud">Bienvenidos a nuestro colegio, un espacio de fe, educación de
                     calidad y fortalecimiento socioemocional.</div>
             </div>
             <div class="title">
-                <strong style="font-size:1.05rem" id="openSidebar">Liceo Mixto Centauros</strong>
-                <div style="font-size:.85rem;color:var(--muted)">Educación con tradición</div>
+                <strong class="title-strong" id="openSidebar">Liceo Mixto Centauros</strong>
+                <div class="title-subtitle">Educación con tradición</div>
             </div>
         </div>
 
         <div class="nav">
             <nav>
-                <ul style="display:flex;gap:.8rem;align-items:center;list-style:none;margin:0;padding:0">
-                    <!-- <li><a href="#" class="btn-3d" id="openSidebar">Liceo Mixto Centauros</a></li> -->
+                <ul class="nav-list">
                     <li><a href="#socials">Contáctenos</a></li>
-                    <!-- <li><a href="#contacto">Pagos</a></li> -->
                     <li><a href="#postersArea">Inscripciones 2026</a></li>
                 </ul>
             </nav>
@@ -48,140 +43,212 @@
         </div>
     </header>
 
-    <!-- SIDEBAR MENU -->
-  <aside class="sidebar" id="sidebar">
-    <div class="side-header">
-      <div
-        style="width:44px;height:44px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#7afcff);display:grid;place-items:center;color:#012">
-        LMC</div>
-      <div>
-        <div style="font-weight:700">Liceo Mixto Centauros</div>
-        <div style="font-size:.85rem;color:var(--muted)"></div>
-      </div>
-    </div>
+    <aside class="sidebar" id="sidebar">
+        <div class="side-header">
+            <div class="side-logo-placeholder">LMC</div>
+            <div>
+                <div class="side-title-main">Liceo Mixto Centauros</div>
+                <div class="side-title-muted"></div>
+            </div>
+        </div>
 
-    <ul class="menu-list">
-      <!-- Home con enlace 3D ya en header, repetimos como acceso rápido -->
-      <li class="menu-item">
-        <a href="index.html" class="home-link">
-          <span class="title"><span class="dot"></span><span>Inicio</span></span>
-        </a>
-      </li>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="index.html" class="home-link">
+                    <span class="title"><span class="dot"></span><span>Inicio</span></span>
+                </a>
+            </li>
 
-      <!-- Categoria 1 -->
-      <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub1"><span class="title"><span class="dot"></span><span>Liceo
-              Mixto Los Centauros</span></span><span>▼</span></a>
-        <ul class="sublist" id="sub1">
-          <li><a href="Comunidad.html">Comunidad</a></li>
-          <li><a href="reseñaHistorica.html">Reseña histórica</a></li>
-          <li><a href="nuestroColegio.html">Nuestro Colegio</a></li>
-          <li><a href="simbolos.html">Símbolos</a></li>
-          <li><a href="fundadores.html">Fundadores</a></li>
+            <li class="menu-item">
+                <a href="#" class="toggle-cat" data-target="#sub1">
+                    <span class="title"><span class="dot"></span><span>Liceo Mixto Los Centauros</span></span>
+                    <span>▼</span>
+                </a>
+                <ul class="sublist" id="sub1">
+                    <li><a href="Comunidad.html">Comunidad</a></li>
+                    <li><a href="reseñaHistorica.html">Reseña histórica</a></li>
+                    <li><a href="nuestroColegio.html">Nuestro Colegio</a></li>
+                    <li><a href="simbolos.html">Símbolos</a></li>
+                    <li><a href="fundadores.html">Fundadores</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="toggle-cat" data-target="#sub2">
+                    <span class="title"><span class="dot"></span><span>Académico</span></span>
+                    <span>▼</span>
+                </a>
+                <ul class="sublist" id="sub2">
+                    <li><a href="grupoDirectivo.html">Equipo directivo</a></li>
+                    <li><a href="propuestaPedagogica.html">Propuesta pedagógica</a></li>
+                    <li><a href="planEstudio.html">Plan de estudios</a></li>
+                    <li><a href="areas.html">Áreas</a></li>
+                    <li><a href="enfasis.html">Énfasis</a></li>
+                    <li><a href="optativas.html">Optativas lúdicas</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="toggle-cat" data-target="#sub3">
+                    <span class="title"><span class="dot"></span><span>socioemocional</span></span>
+                    <span>▼</span>
+                </a>
+                <ul class="sublist" id="sub3">
+                    <li><a href="servicioSocial.html">Servicio social</a></li>
+                    <li><a href="tribuCentauriana.html">Tribu Centauriana</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="toggle-cat" data-target="#sub4">
+                    <span class="title"><span class="dot"></span><span>Convivencial</span></span>
+                    <span>▼</span>
+                </a>
+                <ul class="sublist" id="sub4">
+                    <li><a href="uniformes.html">Uniformes</a></li>
+                    <li><a href="img/2023 MANUAL DE CONVIVENCIA LMC versión 6 (1).pdf" target="_blank">Manual de
+                            convivencia</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="#" class="toggle-cat" data-target="#sub5">
+                    <span class="title"><span class="dot"></span><span>Gobierno escolar</span></span>
+                    <span>▼</span>
+                </a>
+                <ul class="sublist" id="sub5">
+                    <li><a href="consejoPadres.html">Consejo de padres</a></li>
+                    <li><a href="consejoEstudiantil.html">Consejo estudiantil</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-item"><a href="admisiones.html"><span class="title"><span
+                            class="dot"></span><span>Admisiones</span></span></a></li>
+            <li class="menu-item"><a href="contactenos.html"><span class="title"><span
+                            class="dot"></span><span>Contáctenos</span></span></a></li>
         </ul>
-      </li>
 
-      <!-- Categoria 2 -->
-      <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub2"><span class="title"><span
-              class="dot"></span><span>Académico</span></span><span>▼</span></a>
-        <ul class="sublist" id="sub2">
-          <li><a href="grupoDirectivo.html">Equipo directivo</a>
-          </li>
-          <li><a href="propuestaPedagogica.html">Propuesta
-              pedagógica</a></li>
-          <li><a href="planEstudio.html">Plan de estudios</a></li>
-          <li><a href="areas.html">Áreas</a></li>
-          <li><a href="enfasis.html">Énfasis</a></li>
-          <li><a href="optativas.html">Optativas lúdicas</a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Categoria 3 -->
-      <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub3"><span class="title"><span
-              class="dot"></span><span>socioemocional</span></span><span>▼</span></a>
-        <ul class="sublist" id="sub3">
-          <!-- <li><a href="#/pas"  data-page="pas_catequesis">Catequesis</a></li> -->
-          <li><a href="servicioSocial.html"  >Servicio social</a></li>
-          <li><a href="tribuCentauriana.html"  >Tribu Centauriana</a></li>
-          <!-- <li><a href="#/pas"  data-page="pas_semilleros">Semilleros de investigación e
-              innovación</a></li> -->
-        </ul>
-      </li>
-
-      <!-- Categoria 4 -->
-      <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub4"><span class="title"><span
-              class="dot"></span><span>Convivencial</span></span><span>▼</span></a>
-        <ul class="sublist" id="sub4">
-          <li><a href="uniformes.html"  >Uniformes</a></li>
-          <li><a href="img/2023 MANUAL DE CONVIVENCIA LMC versión 6 (1).pdf" >Manual de
-              convivencia</a></li>
-        </ul>
-      </li>
-
-      <!-- Categoria 5 -->
-      <li class="menu-item">
-        <a href="#" class="toggle-cat" data-target="#sub5"><span class="title"><span class="dot"></span><span>Gobierno
-              escolar</span></span><span>▼</span></a>
-        <ul class="sublist" id="sub5">
-          <li><a href="consejoPadres.html" >Consejo de padres</a></li>
-          <li><a href="consejoEstudiantil.html" >Consejo
-              estudiantil</a></li>
-        </ul>
-      </li>
-
-      <!-- Resto Categoria 6-8 simple -->
-      <li class="menu-item"><a href="admisiones.html"><span class="title"><span
-              class="dot"></span><span>Admisiones</span></span></a></li>
-      <li class="menu-item"><a href="contactenos.html" ><span class="title"><span
-              class="dot"></span><span>Contáctenos</span></span></a></li>
-    </ul>
-
-  </aside>
-
-
-    <!-- MAIN -->
+    </aside>
     <main class="container" id="mainContent">
         <section class="text-container">
             <h1 class="community-title">Nuestro Colegio</h1><br>
         </section>
-        <section class="section">
-            <div class="posters" id="postersArea1"></div>
-        </section>
-        <section class="section" id="schedules">
-            <div class="section-maps">
-                <div>
-                    <h3>📍 ¡Ven y descubre nuestra ubicación en Google Maps!</h3>
-                    <a href="https://www.google.com/maps/place/Liceo+Mixto+los+Centauros/@4.6241982,-74.1953357,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9e736648fdaf:0xf3728fd9756866c!8m2!3d4.6241982!4d-74.1927608!16s%2Fg%2F1pv0rjrzh?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D"
-                        target="_blank" class="maps-btn">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png" alt="Google Maps">
-                        <span>Ver ubicación</span>
-                    </a>
+        <div class="brochure-container">
+            <div class="panel left-panel">
+                <div class="section green-dark">
+                    <h2 class="title-dark">MISIÓN</h2>
+                    <p>Formar jóvenes con calidad humana, riqueza espiritual y compromiso con el desarrollo de la
+                        nación, a
+                        través de estándares académicos, dimensiones formativas, competencias y procesos que fortalezcan
+                        su
+                        proyecto de vida.</p>
                 </div>
-                <div class="contador" id="contador">0<span>Años</span></div>
+                <div class="section green-dark">
+                    <h2 class="title-dark">VISIÓN</h2>
+                    <p>Ser una institución líder en educación integral, capaz de formar líderes empoderados que se
+                        desarrollen en la sociedad con responsabilidad y excelencia.</p>
+                    <p>Desde el 2026, nuestros estudiantes egresan con doble titulación:</p>
+                    <ul>
+                        <li>Bachiller académico</li>
+                        <li>Técnico en Programación de Software</li>
+                    </ul>
+                    <p>Esto les abre nuevas oportunidades para continuar estudios universitarios o incorporarse al
+                        sector
+                        laboral con mayores competencias.</p>
+                </div>
+                <div class="section green-dark">
+                    <h2 class="title-dark">FILOSOFÍA</h2>
+                    <p>Una educación integral basada en la convivencia, la tolerancia, el respeto y el arte. Promovemos
+                        el
+                        desarrollo cognitivo, científico, tecnológico y emocional de los estudiantes, entendiendo que
+                        cada
+                        niño es un ser único y valioso.</p>
+                </div>
             </div>
-        </section>
 
+            <div class="panel center-panel">
+                <div class="header-logo">
+                    <img src="img/logo3D.png" alt="Logo Liceo Mixto los Centauros">
+                    <p class="slogan">CULTURA y CIENCIA</p>
+                </div>
+
+                <div class="ad-section">
+                    <p class="quote">¡Inscripciones abiertas!</p>
+                    <p class="ad-text">Únete a la comunidad centauriana y asegura el futuro de tus hijos con una
+                        educación integral, artística y tecnológica que ahora brinda doble titulación.</p>
+                </div>
+
+                <div class="contact-box">
+                    <p>Contáctanos</p>
+                    <p class="phone-number">3013383883</p>
+                </div>
+
+                <div class="more-info">
+                    <p>More Information</p>
+                    <p>colegio@lmc.edu.co</p>
+                    <p>@liceomixtoloscentauros (Instagram y Facebook)</p>
+                </div>
+
+                <div class="location">
+                    <p>Bogotá D.C</p>
+                    <p>Carrera 87 M #61 A 84 sur</p>
+                </div>
+            </div>
+
+            <div class="panel right-panel">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        <div class="slide">
+                            <img src="img/carruselAutomatico/folleto1.jpg" alt="Estudiantes en mesa redonda"
+                                class="carousel-image">
+                        </div>
+
+                        <div class="slide">
+                            <img src="img/carruselAutomatico/folleto1.jpg" alt="Estudiantes trabajando en computador"
+                                class="carousel-image">
+                        </div>
+
+                        <div class="slide">
+                            <img src="img/carruselAutomatico/folleto2.png" alt="Clase con herramientas tecnológicas"
+                                class="carousel-image">
+                        </div>
+
+                        <div class="slide">
+                            <img src="img/carruselAutomatico/folleto3.png" alt="Estudiantes en mesa redonda"
+                                class="carousel-image">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="main-info">
+                    <h1>Liceo Mixto los Centauros</h1>
+                    <p>P.E.I: Pedagogía para el trabajo fundamentada en la práctica de valores y el arte</p>
+                </div>
+
+                <div class="footer-contact">
+                    <p class="email">colegio@lmc.edu.co</p>
+                    <p class="phone-small">3013383883</p>
+                </div>
+            </div>
+        </div>
     </main>
-    <!-- Footer -->
+
     <footer>
         <div class="container">
             <div>Contacto: colegio@lmc.edu.co | Tel: +57 3013383883</div>
-            <div class="socials" id="socials" style="margin-top:.8rem">
-                <a href="#" class="social-link" data-href="https://www.facebook.com/LiceoCentauros/"> <img
-                        src="img/generated-image-0bdd18ee-dbb2-4081-8486-be2ffd49048d.png" alt=""> </a>
-                <a href="#" class="social-link" data-href="https://www.youtube.com/@liceomixtoloscentauros6322">
-                    <img src="img/generated-image-3695af53-0b14-4759-b1c2-c4b885c06436.png" alt=""> </a>
-                <a href="#" class="social-link"
-                    data-href="https://wa.me/573013383883?text=Hola%20quiero%20más%20informació"><img
-                        src="img/generated-image-b692c3a3-0a8e-4bba-9ec3-58cc10f64731.png" alt=""> </a>
-                <a href="#" class="social-link" data-href="https://www.tiktok.com/@l.m.centauros"> <img
-                        src="img/generated-image-c4daba7e-fa29-491c-9622-ee0057962f50.png" alt=""> </a>
-                <a href="#" class="social-link" data-href="https://www.instagram.com/liceomixtoloscentauros/?hl=es">
-                    <img src="img/ChatGPT Image 4 oct 2025, 11_13_48.png" alt=""> </a>
+            <div class="socials" id="socials">
+                <a href="https://www.facebook.com/LiceoCentauros/" class="social-link" target="_blank"> <img
+                        src="img/generated-image-0bdd18ee-dbb2-4081-8486-be2ffd49048d.png" alt="Facebook"> </a>
+                <a href="https://www.youtube.com/@liceomixtoloscentauros6322" class="social-link" target="_blank">
+                    <img src="img/generated-image-3695af53-0b14-4759-b1c2-c4b885c06436.png" alt="YouTube"> </a>
+                <a href="https://wa.me/573013383883?text=Hola%20quiero%20más%20informació" class="social-link"
+                    target="_blank"><img src="img/generated-image-b692c3a3-0a8e-4bba-9ec3-58cc10f64731.png"
+                        alt="WhatsApp"> </a>
+                <a href="https://www.tiktok.com/@l.m.centauros" class="social-link" target="_blank"> <img
+                        src="img/generated-image-c4daba7e-fa29-491c-9622-ee0057962f50.png" alt="TikTok"> </a>
+                <a href="https://www.instagram.com/liceomixtoloscentauros/?hl=es" class="social-link" target="_blank">
+                    <img src="img/ChatGPT Image 4 oct 2025, 11_13_48.png" alt="Instagram"> </a>
             </div>
         </div>
     </footer>
@@ -189,9 +256,9 @@
     <div class="to-top" id="toTop" title="Subir">
         ↑
     </div>
+    
 
     <script src="js/script.js"></script>
-
 </body>
 
 </html>

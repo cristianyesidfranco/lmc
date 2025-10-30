@@ -1,0 +1,515 @@
+/* Importar fuentes de Google Fonts */
+/* Cinzel Decorative es una buena opción para un estilo clásico con serifa */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
+/* Reset y variables */
+:root {
+    --bg: #07101a;
+    --card: #0b1a24;
+    --accent: #00ff0d;
+    --neon: rgba(0, 240, 255, 0.12);
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-2: rgba(255, 255, 255, 0.02);
+    --muted: #dee5e9;
+    --max-w: 1200px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--bg), #087736);
+    color: #e6f7fb;
+    line-height: 1.35;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+p {
+    /* Aplica a todos los elementos <p> */
+    text-align: left;
+}
+/* Global Container */
+.container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1rem;
+}
+/* ==================== Header y Navegación ==================== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* Icono 3D Home */
+.home-3d {
+    width: 54px;
+    height: 54px;
+    perspective: 800px;
+    cursor: pointer;
+    position: relative;
+}
+
+.home-3d .cube {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.home-3d:hover .cube {
+    transform: rotateX(-14deg) rotateY(14deg) translateY(-4px);
+}
+
+.cube .face {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #06b6d4, #0284a8);
+    box-shadow: 0 8px 24px rgba(2, 8, 23, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.cube .face.top {
+    transform: rotateX(90deg) translateZ(27px);
+}
+
+.cube .face.front {
+    transform: translateZ(27px);
+}
+
+.cube .face.right {
+    transform: rotateY(90deg) translateZ(27px);
+}
+
+.home-label {
+    position: absolute;
+    left: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--glass);
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.home-cloud {
+    position: absolute;
+    left: -8px;
+    top: 66px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.6rem 0.9rem;
+    border-radius: 18px;
+    display: none;
+    color: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+/*parrafo general*/
+p{
+    margin: 0;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Responsivo */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+/* Toggle menu (mobile) */
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.hamburger {
+    width: 42px;
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #7afcff);
+    border-radius: 3px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Sidebar / Megamenu */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 85%;
+    background: linear-gradient(180deg, rgba(10, 20, 28, 0.98), rgba(8, 14, 18, 0.98));
+    padding: 1.2rem;
+    transform: translateX(-110%);
+    transition: transform 0.42s cubic-bezier(0.2, 0.9, 0.3, 1);
+    z-index: 1200;
+    overflow-y: auto; /* Usar overflow-y para el scroll vertical */
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.side-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.2rem;
+}
+
+.menu-item>a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+}
+
+.menu-item a .title {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.menu-item a .title .dot {
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(90deg, var(--accent), #7afcff);
+    border-radius: 50%;
+}
+
+.sublist {
+    list-style: none;
+    padding-inline-start: 1rem;
+    margin: 6px 0 10px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s ease;
+}
+
+.sublist.open {
+    max-height: 600px; /* Suficientemente grande para contener la lista */
+}
+
+.sublist li a {
+    display: block;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+/* Neon hover efectos */
+.menu-item a:hover,
+.sublist li a:hover {
+    box-shadow: 0 6px 18px rgba(0, 240, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.sublist li a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+}
+/* Contenedor del Folleto - Estilo Tríptico */
+.brochure-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.panel {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 800px;
+    position: relative; /* Importante para el footer */
+}
+
+/* --- Panel Izquierdo --- (Sin cambios) */
+.left-panel {
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+}
+
+.left-panel h2 {
+    color: #ffeb3b;
+    border-bottom: 2px solid var(--color-white);
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+.left-panel ul {
+    list-style-type: '★ ';
+    padding-left: 20px;
+}
+
+/* --- Panel Central --- (Sin cambios) */
+.center-panel {
+    background-color: var(--color-bright-green);
+    color: var(--color-black);
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.contact-box {
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.phone-number {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* --- Panel Derecho (Carrusel) --- */
+.right-panel {
+    background-color: var(--color-light-bg);
+    padding: 0;
+    padding-bottom: 60px; /* Espacio para el footer */
+    overflow: hidden; /* Asegura que la animación del carrusel no se desborde */
+}
+
+.main-info {
+    padding: 20px;
+}
+
+.main-info h1 {
+    color: var(--color-dark-green);
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+/* Variables de color (asumidas del contexto anterior) */
+:root {
+    --color-dark-green: #1a603a; 
+    --color-white: #ffffff;
+}
+
+/* Estilos del Carrusel */
+.carousel-wrapper {
+    /* Mantenemos el padding aquí para un margen visual del carrusel,
+       y aseguramos que no haya desbordamiento horizontal. */
+    width: 100%;
+    height: 350px; /* Altura del área visible del carrusel */
+    overflow: hidden;
+    position: relative;
+    padding: 20px; /* Margen interior: 20px en todos los lados */
+    box-sizing: border-box; /* IMPORTANTE: El padding se incluye en el 100% del ancho */
+}
+
+.carousel-track {
+    display: flex;
+    /* El ancho es simplemente (número de slides * 100%) porque el 25% del slide
+       se calcula respecto al ancho del wrapper. */
+    width: 400%; /* 4 slides (3 reales + 1 clon) */
+    height: 100%;
+    /* La animación se simplifica para moverse en múltiplos de -25% */
+    animation: slide-in 12s infinite linear; 
+}
+
+
+
+/* Corregimos el último slide para que no tenga padding extra si es necesario */
+.carousel-track .slide:last-child {
+    padding-right: 0;
+}
+
+
+/* Estilo del contenedor principal de la imagen (el slide) */
+.slide {
+    width: 20%; 
+    flex-shrink: 0;
+    padding-right: 10px; 
+    box-sizing: border-box; 
+    height: 100%; /* Asegura que el slide ocupe 100% de la altura del track */
+}
+
+/* 🔑 CLAVE: Estilos aplicados directamente a la imagen */
+.slide img {
+    /* 1. Ocupar el 100% del espacio del contenedor (.slide) */
+    width: 100%;
+    height: 100%; 
+    
+    /* 2. Propiedad mágica: Cubre el área manteniendo la proporción. */
+    /* La imagen se dimensiona para llenar el elemento de contenido, recortando si es necesario. */
+    object-fit: cover;
+    
+    /* Otros estilos (se mantienen) */
+    display: block;
+    border-radius: 5px;
+}
+/* Boton flotante subir */
+.to-top {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #0891b2, #012f34);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    z-index: 1300;
+}
+
+/* Definición de la Animación SIMPLIFICADA */
+@keyframes slide-in {
+    /* 12s total: 3s por slide. 2s quieto, 1s de transición. */
+    
+    /* SLIDE 1 */
+    0%, 25% { transform: translateX(0%); }
+    
+    /* SLIDE 2 */
+    33%, 58% { transform: translateX(-25%); }
+    
+    /* SLIDE 3 */
+    66%, 91% { transform: translateX(-50%); }
+    
+    /* TRANSICIÓN AL CLON (para loop) */
+    100% { transform: translateX(-75%); } 
+}
+
+/* Pie de Página */
+.footer-contact {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+/* ==================== Footer ==================== */
+footer {
+    padding: 1.2rem;
+    text-align: center;
+    color: var(--muted);
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.2));
+    margin-top: 2rem;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.socials a {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: var(--glass);
+    display: inline-block;
+}
+
+footer .socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem; /* Añadir espacio si es necesario */
+}
+
+footer .socials img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+footer .socials img:hover {
+    transform: scale(1.2);
+}
+
+/* ======================================= */
+/* ====== RESPONSIVIDAD CON MEDIA QUERY ====== */
+/* ======================================= */
+
+@media (max-width: 768px) {
+    .brochure-container {
+        flex-direction: column;
+    }
+
+    .panel {
+        flex: none;
+        width: 100%;
+        padding: 20px 15px;
+        min-height: auto;
+    }
+
+    /* Ajuste de carrusel en móvil */
+    .carousel-wrapper {
+        height: 250px; /* Reducir altura en móvil */
+    }
+
+    /* Footer fijo en móvil */
+    .right-panel {
+        padding-bottom: 50px;
+    }
+    
+    .footer-contact {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+    }
+}

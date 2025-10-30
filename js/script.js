@@ -109,7 +109,7 @@ $(function () {
 
         observer.observe(contadorElement);
     }
-
+ 
     // LÓGICA DEL TÍTULO NEÓN
     function setupCommunityTitle() {
         const $communityTitle = $('.community-title');
