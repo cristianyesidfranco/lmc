@@ -513,3 +513,9 @@ footer .socials img:hover {
         width: 100%;
     }
 }
+@media (max-width: 560px) {
+ 
+    .nav {
+        display: none;
+    }
+}
