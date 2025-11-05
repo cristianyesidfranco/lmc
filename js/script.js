@@ -109,7 +109,7 @@ $(function () {
 
         observer.observe(contadorElement);
     }
- 
+    
     // LÓGICA DEL TÍTULO NEÓN
     function setupCommunityTitle() {
         const $communityTitle = $('.community-title');
@@ -197,64 +197,86 @@ $(function () {
 
     // Grid de posters (Lógica de generación dinámica)
     /**
- * Generates and inserts poster HTML into a specified container.
- * It also applies the 'full' class based on the images included in the initial set,
- * which you might want to adjust or pass as an argument for true reusability.
- *
- * @param {string} containerSelector The jQuery selector (e.g., '#postersArea', '#postersArea1') for the container.
- * @param {string[]} imagePaths An array of image source paths (e.g., ["img/path1.png", "img/path2.jpeg"]).
- */
-    function generatePostersArea(containerSelector, imagePaths) {
+     * Generates and inserts poster HTML into a specified container.
+     * It allows each poster to have a unique link (href).
+     *
+     * @param {string} containerSelector The jQuery selector (e.g., '#postersArea', '#postersArea1') for the container.
+     * @param {Array<{src: string, href: string}>} posterDataList An array of objects containing the image path (src) and the destination URL (href).
+     */
+    function generatePostersArea(containerSelector, posterDataList) {
         const $postersArea = $(containerSelector);
 
-        // Only proceed if the container element exists on the page
-        if ($postersArea.length && Array.isArray(imagePaths) && imagePaths.length > 0) {
+        // Only proceed if the container element exists and the list is valid
+        if ($postersArea.length && Array.isArray(posterDataList) && posterDataList.length > 0) {
+            
             // Define which images should get the 'full' class. 
-            // NOTE: For maximum reusability, you might want to pass this list 
-            // or a condition as an argument instead of hardcoding it.
             const fullImageIdentifiers = [
-                "admisiones2026", "folleto1", "folleto2",
-                "reingenieria_pedagogica", "matriculas_abiertas", "cambio_agentes_educativos","virgen_de_fatima.png"
+                "folleto1", "folleto2",
+                "reingenieria_pedagogica", "matriculas_abiertas", "cambio_agentes_educativos"
             ];
 
             // Generate the poster HTML dynamically
-            const postersHTML = imagePaths.map((src, i) => {
+            // 🔑 CAMBIO CLAVE: Usamos 'posterDataList' y extraemos 'src' y 'href' del objeto 'item'.
+            const postersHTML = posterDataList.map((item, i) => {
+                
+                const src = item.src;
+                const href = item.href; 
+                
                 // Check if the current src contains any of the 'full' identifiers
                 const isFull = fullImageIdentifiers.some(identifier => src.includes(identifier));
 
-                // Each poster is a DIV with classes .poster and .poster-slide
-                return `<div class="poster poster-slide ${isFull ? "full" : ""}"><a href="#"><img src="${src}" alt="Poster ${i + 1}"></a></div>`;
+                // Each poster is a DIV with classes .poster and .poster-slide, ahora usando el 'href' dinámico
+                return `<div class="poster poster-slide ${isFull ? "full" : ""}"><a href="${href}"><img src="${src}" alt="Poster ${i + 1}"></a></div>`;
             }).join("");
 
             // Insert the generated HTML into the container
             $postersArea.html(postersHTML);
-        } else if ($postersArea.length && imagePaths.length === 0) {
-            console.warn(`Poster generation skipped for ${containerSelector}: No image paths provided.`);
+            
+        } else if ($postersArea.length && posterDataList && posterDataList.length === 0) {
+            console.warn(`Poster generation skipped for ${containerSelector}: No poster data provided.`);
         }
     }
 
-    // --- Usage Examples --- 
-
-    // 1. Posters Area with the original, larger set of images
-    const posters1 = [
-        "img/posters/folleto1.png", "img/posters/folleto2.png", "img/posters/reingenieria_pedagogica.jpeg",
-        "img/posters/matriculas_abiertas.png", "img/posters/cambio_agentes_educativos.jpeg","img/posters/welcomeStudents.png", "img/posters/proyectos.png",
-        "img/posters/rectoraAdmisiones.png", "img/posters/costos2026.png", "img/posters/admisiones2026.png",
-    ];
-    generatePostersArea('#postersArea', posters1);
-
-    // 2. Posters Area 1 with the smaller, different set of images
-    const posters2 = [
+    // ------------------------------------------------------------------
+    // FUNCIÓN DE INICIALIZACIÓN DE LA GALERÍA DE PÓSTERES
+    // ------------------------------------------------------------------
+    function initializePosterGallery() {
         
-        "img/virgen_de_fatima.png",
-    ]
-    generatePostersArea('#postersArea1', posters2);
-     // 3. Posters Area 1 with the smaller, different set of images
-    const posters3 = [
+        // Lista de objetos que contiene la información esencial de cada póster.
+        // CADA OBJETO DEBE INCLUIR LA RUTA (src) Y EL ENLACE DE DESTINO (href).
+        const posterDataList = [
+            // 🔑 PÓSTERES PRINCIPALES (#postersArea)
+           
+            { src: "img/posters/folleto1.png", href: "nuestroColegio.html" },
+            { src: "img/posters/folleto2.png", href: "nuestroColegio.html" },
+            { src: "img/posters/reingenieria_pedagogica.jpeg", href: "propuestaPedagogica.html" },
+            { src: "img/posters/matriculas_abiertas.png", href: "admisiones.html" },
+            { src: "img/posters/cambio_agentes_educativos.jpeg", href: "comunidad.html" },
+            { src: "img/posters/welcomeStudents.png", href: "index.html" },
+            { src: "img/posters/proyectos.png", href: "proyectos.html" },
+            { src: "img/posters/rectoraAdmisiones.png", href: "nuestroColegio.html" },
+            { src: "img/posters/costos2026.png", href: "costos.html" },
+            
+            // 🔑 PÓSTERES ADICIONALES (Para reutilizar en #postersArea1 si aplica)
+            
+            // { src: "img/virgen_de_fatima.png", href: "simbolos.html" },
+            //  { src: "img/posters/admisiones2026.png", href: "admisiones.html" },
+        ];
         
-        "img/posters/folleto2.png",
-    ]
-    generatePostersArea('#postersArea1', posters3);
+        // Genera el área principal de pósteres
+        generatePostersArea('#postersArea', posterDataList);
+
+        // Si necesitas un área de pósteres secundaria (#postersArea1), 
+        // puedes filtrar la lista o definir una nueva lista de objetos aquí.
+        const postersArea1Data = [
+             { src: "img/virgen_de_fatima.png", href: "simbolos.html" }, // Primer póster del ejemplo 2
+             { src: "img/posters/folleto2.png", href: "nuestroColegio.html" } // Primer póster del ejemplo 3
+        ];
+        
+        // Genera el área secundaria de pósteres (si existe en el HTML)
+        generatePostersArea('#postersArea1', postersArea1Data);
+    }
+
     // 3. Reusable Hover Animation Logic (can stay outside or be its own function)
     function setupCardHoverAnimation() {
         $(".card").hover(
@@ -276,11 +298,6 @@ $(function () {
     // Call the animation setup function when the DOM is ready
     $(document).ready(function () {
         setupCardHoverAnimation();
-
-        // You would call your poster generation functions here as well
-        // generatePostersArea('#postersArea', posters1); 
-        // generatePostersArea('#postersArea1', posters2); 
-        // ... or any other area on a different page
     });
 
     // Back to top visibility & click
@@ -314,6 +331,9 @@ $(function () {
     // 2. Inicialización del Carrusel de COMUNIDAD.HTML (usa #dots-blog y .poster)
     // Esto asegura que la página de comunidad siga funcionando.
     setupAutomaticCarousel('#autoTrack', '#dots-blog', '.poster');
+    
+    // 3. Inicialización de la Galería de Pósteres
+    initializePosterGallery();
 
     // 📢 Nota: El carrusel que no exista en la página actual será ignorado por el script.
 
@@ -369,57 +389,59 @@ $(function () {
         // Si tuvieras otro video, podrías llamar a la función de nuevo:
         // iniciarEfectoVideo3D('#otroVideo'); 
     });
+    
+    // Lógica para inicializar el mapa conceptual (se mantiene sin cambios)
     function inicializarMapaConceptual() {
-    // 1. Mapeo de Descripciones (Usado como fallback si no hay data-attributes)
-    // NOTA: Es buena práctica mantener la fuente de datos fuera de la lógica principal.
-    const descripciones = {
-        'central': 'Este es el NÚCLEO del proyecto, la idea principal que une a todos los elementos del mapa conceptual. Representa la misión y visión del sistema.',
-        'superior-izq': 'Componente de **Análisis del Entorno**: Explora las tendencias, amenazas y oportunidades externas que afectan al proyecto. Es la primera fase de planificación.',
-        'superior-centro1': 'Componente de **Definición de Objetivos**: Establece las metas SMART (Específicas, Medibles, Alcanzables, Relevantes, Temporales) del proyecto.',
-        'superior-centro2': 'Componente de **Planificación de Recursos**: Determina los activos humanos, financieros y tecnológicos necesarios para la ejecución del proyecto.',
-        'superior-der': 'Componente de **Diseño y Estructura**: Define la arquitectura y el diseño del sistema o producto, asegurando una base sólida y escalable.',
-        'medio-izq': 'Componente de **Ejecución y Despliegue**: Pone en marcha las acciones planificadas. Es la fase donde la teoría se convierte en práctica.',
-        'medio-der': 'Componente de **Monitoreo y Control**: Sigue el progreso, mide el desempeño contra los objetivos y aplica correcciones cuando es necesario.',
-        'inferior-izq': 'Componente de **Evaluación de Resultados**: Mide el impacto final del proyecto y compara los logros con los objetivos iniciales definidos.',
-        'inferior-centro1': 'Componente de **Retroalimentación y Aprendizaje**: Recopila lecciones aprendidas para mejorar futuros proyectos e iteraciones del mapa.',
-        'inferior-centro2': 'Componente de **Ajuste Estratégico**: Modifica la estrategia central con base en la retroalimentación y los nuevos aprendizajes adquiridos.',
-        'inferior-der': 'Componente de **Cierre y Documentación**: Finaliza formalmente el proyecto, archiva documentación clave y celebra los éxitos obtenidos.'
-    };
+        // 1. Mapeo de Descripciones (Usado como fallback si no hay data-attributes)
+        // NOTA: Es buena práctica mantener la fuente de datos fuera de la lógica principal.
+        const descripciones = {
+            'central': 'Este es el NÚCLEO del proyecto, la idea principal que une a todos los elementos del mapa conceptual. Representa la misión y visión del sistema.',
+            'superior-izq': 'Componente de **Análisis del Entorno**: Explora las tendencias, amenazas y oportunidades externas que afectan al proyecto. Es la primera fase de planificación.',
+            'superior-centro1': 'Componente de **Definición de Objetivos**: Establece las metas SMART (Específicas, Medibles, Alcanzables, Relevantes, Temporales) del proyecto.',
+            'superior-centro2': 'Componente de **Planificación de Recursos**: Determina los activos humanos, financieros y tecnológicos necesarios para la ejecución del proyecto.',
+            'superior-der': 'Componente de **Diseño y Estructura**: Define la arquitectura y el diseño del sistema o producto, asegurando una base sólida y escalable.',
+            'medio-izq': 'Componente de **Ejecución y Despliegue**: Pone en marcha las acciones planificadas. Es la fase donde la teoría se convierte en práctica.',
+            'medio-der': 'Componente de **Monitoreo y Control**: Sigue el progreso, mide el desempeño contra los objetivos y aplica correcciones cuando es necesario.',
+            'inferior-izq': 'Componente de **Evaluación de Resultados**: Mide el impacto final del proyecto y compara los logros con los objetivos iniciales definidos.',
+            'inferior-centro1': 'Componente de **Retroalimentación y Aprendizaje**: Recopila lecciones aprendidas para mejorar futuros proyectos e iteraciones del mapa.',
+            'inferior-centro2': 'Componente de **Ajuste Estratégico**: Modifica la estrategia central con base en la retroalimentación y los nuevos aprendizajes adquiridos.',
+            'inferior-der': 'Componente de **Cierre y Documentación**: Finaliza formalmente el proyecto, archiva documentación clave y celebra los éxitos obtenidos.'
+        };
 
-    // 2. FUNCIÓN DE ABRIR DESCRIPCIÓN al hacer clic en cualquier nodo
-    $('.nodo').on('click', function() {
-        // Obtenemos la segunda clase (la de posicionamiento, ej: 'central', 'superior-izq')
-        // Usamos una expresión regular para una extracción más limpia de la clase de posición
-        const claseNodo = ($(this).attr('class').match(/(central|superior-\w+|medio-\w+|inferior-\w+)/) || [])[0];
-        
-        // Obtener el contenido, priorizando los 'data-attributes' del HTML (más flexible)
-        let titulo = $(this).data('titulo') || `Título de ${claseNodo}`;
-        let contenido = $(this).data('contenido') || descripciones[claseNodo] || 'Descripción no disponible.';
+        // 2. FUNCIÓN DE ABRIR DESCRIPCIÓN al hacer clic en cualquier nodo
+        $('.nodo').on('click', function() {
+            // Obtenemos la segunda clase (la de posicionamiento, ej: 'central', 'superior-izq')
+            // Usamos una expresión regular para una extracción más limpia de la clase de posición
+            const claseNodo = ($(this).attr('class').match(/(central|superior-\w+|medio-\w+|inferior-\w+)/) || [])[0];
+            
+            // Obtener el contenido, priorizando los 'data-attributes' del HTML (más flexible)
+            let titulo = $(this).data('titulo') || `Título de ${claseNodo}`;
+            let contenido = $(this).data('contenido') || descripciones[claseNodo] || 'Descripción no disponible.';
 
-        // Llenar la caja modal
-        $('#descripcion-titulo').html(titulo); // Usar .html() para permitir negritas del fallback
-        $('#descripcion-contenido').html(contenido); // Usar .html() para permitir negritas del fallback
+            // Llenar la caja modal
+            $('#descripcion-titulo').html(titulo); // Usar .html() para permitir negritas del fallback
+            $('#descripcion-contenido').html(contenido); // Usar .html() para permitir negritas del fallback
 
-        // Mostrar la caja modal
-        $('.descripcion-overlay').fadeIn(300);
+            // Mostrar la caja modal
+            $('.descripcion-overlay').fadeIn(300);
+        });
+
+        // 3. FUNCIÓN DE CERRAR DESCRIPCIÓN (al hacer clic en el botón o en el fondo)
+        $('.cerrar-btn, .descripcion-overlay').on('click', function(e) {
+            // Solo cerrar si el clic es en el botón o directamente en el fondo oscuro
+            if ($(e.target).is('.cerrar-btn') || $(e.target).is('.descripcion-overlay')) {
+                $('.descripcion-overlay').fadeOut(300);
+            }
+        });
+
+        // 4. PREVENIR EL CIERRE AL HACER CLIC DENTRO DEL CONTENIDO DE LA CAJA
+        $('.descripcion-box').on('click', function(e) {
+            e.stopPropagation(); // Detiene el evento para que no llegue al overlay (al fondo)
+        });
+    }
+
+    // Llama a la función de inicialización cuando el documento esté completamente cargado.
+    $(document).ready(function() {
+        inicializarMapaConceptual();
     });
-
-    // 3. FUNCIÓN DE CERRAR DESCRIPCIÓN (al hacer clic en el botón o en el fondo)
-    $('.cerrar-btn, .descripcion-overlay').on('click', function(e) {
-        // Solo cerrar si el clic es en el botón o directamente en el fondo oscuro
-        if ($(e.target).is('.cerrar-btn') || $(e.target).is('.descripcion-overlay')) {
-            $('.descripcion-overlay').fadeOut(300);
-        }
-    });
-
-    // 4. PREVENIR EL CIERRE AL HACER CLIC DENTRO DEL CONTENIDO DE LA CAJA
-    $('.descripcion-box').on('click', function(e) {
-        e.stopPropagation(); // Detiene el evento para que no llegue al overlay (al fondo)
-    });
-}
-
-// Llama a la función de inicialización cuando el documento esté completamente cargado.
-$(document).ready(function() {
-    inicializarMapaConceptual();
-});
 });
