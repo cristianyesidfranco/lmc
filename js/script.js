@@ -255,7 +255,7 @@ $(function () {
             { src: "img/posters/welcomeStudents.png", href: "index.html" },
             { src: "img/posters/proyectos.png", href: "proyectos.html" },
             { src: "img/posters/rectoraAdmisiones.png", href: "nuestroColegio.html" },
-            { src: "img/posters/costos2026.png", href: "costos.html" },
+            { src: "img/posters/costos2026.png", href: "pdfs/Costos2026.pdf" },
             
             // 🔑 PÓSTERES ADICIONALES (Para reutilizar en #postersArea1 si aplica)
             
